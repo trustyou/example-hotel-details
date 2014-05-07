@@ -1,0 +1,426 @@
+/* General styles */
+
+body {
+	background: #fff;
+	font: 14px/18px "Roboto", Arial, Helvetica sans-serif;
+}
+
+p {
+	color: #333;
+	font-weight: 300;
+	line-height: 1.6em;
+}
+
+h1 {
+	margin: 0;
+	color: #666;
+	text-align: left;
+	font-weight: 300;
+	font-size: 2.2em;
+}
+
+.container {
+	position: relative;
+	margin: 0 auto;
+	padding: 30px 0;
+	width: 1000px;
+}
+
+.pos {
+	color: #119a11;
+}
+
+.neu {
+	color: #f9c015;
+}
+
+.neg {
+	color: #f37159;
+}
+
+/* Powered by */
+
+a.verified-reviews {
+	display: block;
+	float: right;
+	margin: 20px 0 40px;
+}
+
+a.verified-reviews:before,
+a.verified-reviews:after {
+	display: table;
+	clear: both;
+	content: '';
+}
+
+a.verified-reviews:focus {
+	outline: none;
+	border: none;
+}
+
+/* Header */
+
+header {
+	border-bottom: 1px solid #ddd;
+	background: #f5f5f5;
+}
+
+header .container {
+	padding: 50px 0 0;
+}
+
+header .thumbnail {
+	position: relative;
+}
+
+header h2{
+	margin: 10px 0 0;
+	font-weight: 300;
+	font-size: 1.0em;
+}
+
+header h2 .ty-icon {
+	float: left;
+	margin: 0 3px 0 0;
+	color: #999;
+}
+
+header h3 {
+	margin: 0 0 15px;
+	font-size: 1.0em;
+	line-height: 1.4em;
+}
+
+/* Stars */
+
+.stars{
+	margin: 0 0 0 5px;
+	color: #ccc;
+	font-size: .7em;
+}
+
+.stars span{
+	margin-right: -3px;
+}
+
+.stars span.active{
+	color: #ffb400;
+}
+
+/* Ranking */
+
+header .ranking {
+	position: absolute;
+	top: 20px;
+	right: 0;
+	padding: 0 20px;
+	background: #119a11;
+	color: #fff;
+	font-size: .9em;
+}	
+
+header .rank-wrapper {
+	display:table-cell;
+	height: 50px; 
+	vertical-align:middle;
+}
+
+header .ranking span {
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0 2px 1px rgba(0, 0, 0, .6);
+	font-size: 1.2em;
+	line-height: 1.2em;
+}
+
+/* Hotel type */
+
+header .hotel-type{
+	padding-left: 30px;
+}
+
+header .hotel-type p{
+	margin-bottom: 0;
+	color: #666;
+}
+
+header .hotel-type p .ty-icon {
+	float: left;
+	margin-left: -30px;
+	font-size: 1.6em;
+}
+
+/* TrustScore */
+
+header .trustscore {
+	margin: 15px 0;
+	width: 200px;
+}
+
+/* Tabs */
+
+header .nav-tabs {
+	display: block;
+	clear: both;
+	margin-bottom: -1px;
+}
+
+header .nav-tabs>li>a, 
+header .nav-tabs>li>a:hover, 
+header .nav-tabs>li>a:focus {
+	padding: 15px 25px;
+	font-weight: normal;
+	font-size: 1.1em;
+}
+
+header .nav-tabs>li.active>a, 
+header .nav-tabs>li.active>a:hover, 
+header .nav-tabs>li.active>a:focus {
+	color: #428bca;
+}
+
+header .nav-tabs>li>a, .nav-tabs>li>a:hover, 
+header .nav-tabs>li>a:focus {
+	color: #777;
+}
+
+header .nav-tabs>li .ty-icon {
+	float: left;
+	margin: 2px 5px 0 0;
+	font-size: 1.2em;
+}
+
+/* Review summary */
+
+.review-summary h2 {
+	margin: 0 0 20px;
+	font-weight: 500;
+	font-size: 1.2em;
+}
+
+section.highlights .nav-pills>li>a {
+	padding: 7px 15px 6px;
+	border: 1px solid transparent;
+	color: #666;
+}
+
+section.highlights .nav-pills>li.active>a, 
+section.highlights .nav-pills>li.active>a:hover, 
+section.highlights .nav-pills>li.active>a:focus {
+	border: 1px solid #e5e5e5;
+	background: transparent;
+	color: #428bca;
+}
+
+section.highlights .nav-pills {
+	float: left;
+	margin-right: 20px;
+	border-bottom: 0;
+}
+
+section.highlights .pill-pane {
+	display: none;
+}
+
+section.highlights .pill-pane.active {
+	display: block;
+}
+
+section.highlights .pill-content {
+	float: left;
+	width: 540px;
+}
+
+section.highlights .sentiment {
+	background: #fafafa;
+}
+
+section.highlights .sentiment.neg {
+	background: #ee8e8e;
+}
+
+section.highlights .sentiment.neu {
+	background: #f8d867;
+}
+
+section.highlights .sentiment.pos {
+	background: #9acf89;
+}
+
+section.highlights .sentiment .ty-icon {
+	float: left;
+	margin: 9px 0 0 7px;
+	color: #fff;
+	font-size: 1.8em;
+}
+
+section.highlights .sentiment p.snippets {
+	position: relative;
+	margin-left: 40px;
+	padding: 10px 15px;
+	background: #f5f5f5;
+	color: #999;
+	font-weight: normal;
+	font-style: italic;
+	font-size: .9em;
+}
+
+section.highlights .sentiment.neg p.snippets {
+	background: #fff2f2;
+	color: #d96866;
+}
+
+section.highlights .sentiment.neu p.snippets {
+	background: #fff8e3;
+	color: #f9c015;
+}
+
+section.highlights .sentiment.pos p.snippets {
+	background: #f0ffed;
+	color: #81bf52;
+}
+
+section.highlights .sentiment p.snippets span {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+section.highlights .subcategory .result-chart {
+	float: left;
+	margin-top: 4px;
+	margin-right: 18px;
+	width: 100px;
+	height: 15px;
+	background: #f0f0f0;
+}
+
+section.highlights .subcategory .result-chart .result-value {
+	height: 100%;
+}
+
+section.highlights .subcategory .result-chart.neg .result-value {
+	background: #ee8e8e;
+}
+
+section.highlights .subcategory .result-chart.neu .result-value {
+	background: #f8d867;
+}
+
+section.highlights .subcategory .result-chart.pos .result-value {
+	background: #9acf89;
+}
+
+section.highlights .subcategory p {
+	font-weight: 300;
+}
+
+section.highlights .subcategory p strong {
+	color: #333;
+	font-weight: 500;
+}
+
+
+section.good-to-know  ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+section.good-to-know  ul li {
+	display: block;
+	margin-bottom: 10px;
+}
+
+section.good-to-know ul .ty-icon {
+	float: left;
+	margin-right: 10px;
+}
+section.good-to-know ul .ty-icon-ok {
+	color: #9acf89;
+}
+
+section.good-to-know ul .ty-icon-remove {
+	color: #ee8e8e;
+}
+
+/* Social */
+
+section.social .post {
+	position: relative;
+	margin-right: 10px;
+	margin-bottom: 30px;
+	padding: 15px;
+	border-left: 1px solid #999;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	background: #f9f9f9;
+}
+
+section.social .post p {
+	margin: 0;
+	line-height: normal;
+}
+
+section.social .post .social-badge{
+	position: absolute;
+	top: 0;
+	left: -25px;
+	width: 25px;
+	height: 25px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	background: #999;
+	color: #fff;
+	text-align: center;
+}
+
+section.social.foursquare .post .social-badge {
+	background: #1983b6;
+}
+
+section.social.google-plus .post .social-badge {
+	background: #df4931;
+}
+
+section.social.foursquare .post {
+	border-left-color: #1983b6;
+}
+
+section.social.google-plus .post {
+	border-left-color: #df4931;
+}
+
+section.social .post .social-badge .ty-icon{
+	display: inline-block;
+	margin-top: 6px;
+}
+
+section.social .post .avatar {
+	float: left;
+	margin-right: 10px;
+	width: 50px;
+}
+
+section.social .post .publish-date {
+	float: right;
+}
+
+section.social .post .name a,
+section.social .post .name a:link,
+section.social .post .name a:visited{
+	font-weight: 500;
+	color: #333;
+}
+
+section.social .post .source{
+	font-size: .9em;
+	color: #333;
+}
+
+section.social .post .content{
+	clear: both;
+	padding-top: 5px;
+	font-size: .9em;
+	line-height: 1.6em;
+}

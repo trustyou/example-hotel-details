@@ -1,0 +1,329 @@
+/* ------------- TrustScore -------------- */
+
+.trustscore {
+	position: relative;
+	font-size: 14px;
+}
+
+.trustscore:before,
+.trustscore:after {
+	display: table;
+	clear: both;
+	content: '';
+}
+
+.trustscore * {	
+	line-height: 1.0em;
+}
+
+.trustscore.size-s .badges .ty-icon,
+.trustscore .score {
+	color: #666;
+}
+
+.trustscore .value {
+	position: relative;
+	float: left;
+	background: #666;
+	color: #fff;
+}
+
+.trustscore .value:after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	border-style: solid;
+	border-color: #666 transparent transparent #666;
+	content: '';
+}
+
+/* ------------- Negative ---------------- */
+
+.trustscore .badges .ty-icon.neg,
+.trustscore.neg .score {
+	color: #f37159;
+}
+
+.trustscore.neg .value {
+	background: #f37159;
+}
+
+.trustscore.neg .value:after {
+	border-color: #f37159 transparent transparent #f37159;
+}
+
+/* -------------- Neutral ---------------- */
+
+.trustscore .badges .ty-icon.neu,
+.trustscore.neu .score {
+	color: #f9c015;
+}
+
+.trustscore.neu .value {
+	background: #f9c015;
+}
+
+.trustscore.neu .value:after {
+	border-color: #f9c015 transparent transparent #f9c015;
+}
+
+/* ------------- Positive ---------------- */
+
+.trustscore .badges .ty-icon.pos,
+.trustscore.pos .score {
+	color: #119a11;
+}
+
+.trustscore.pos .value {
+	background: #119a11;
+}
+
+.trustscore.pos .value:after {
+	border-color: #119a11 transparent transparent #119a11;
+}
+
+/* --------------- XL, L ----------------- */
+
+.trustscore.size-xl,
+.trustscore.size-l {
+	border: 1px solid #ddd;
+}
+
+.trustscore.size-xl .title,
+.trustscore.size-l .title {
+	position: absolute;
+	top: -1px;
+	right: -1px;
+	left: -1px;
+	background: #3578c0;
+	color: #a8d1fd;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.trustscore.size-xl .title span:first-child,
+.trustscore.size-l .title span:first-child {
+	color: #fff;
+}
+
+.trustscore.size-xl .value,
+.trustscore.size-l .value {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 0 0 -1px -1px;
+	text-align: center;
+	font-weight: 700;
+}
+
+.trustscore.size-xl .score,
+.trustscore.size-l .score {
+	width: 100%;
+	color: #333;
+	text-align: center;
+	font-weight: 500;
+}
+
+.trustscore.size-xl .signature,
+.trustscore.size-l .signature {
+	text-align: right;
+	font-style: italic;
+}
+
+/* ---------------- XL ------------------- */
+
+.trustscore.size-xl {
+	width: 148px;
+	height: 120px;
+	border-radius: 6px;
+}
+
+.trustscore.size-xl .title {
+	padding: 5px 0;	
+	border-radius: 6px 6px 0 0;
+	font-weight: 700;
+	font-size: 1.1em;
+}
+
+.trustscore.size-xl .value {
+	padding: 13px 0;
+	width: 75px;
+	font-size: 2.4em;
+}
+
+.trustscore.size-xl .value:after {
+	border-width: 9px;
+}
+
+.trustscore.size-xl .score {
+	margin-top: 33px;
+	font-size: 1.5em;
+}
+
+.trustscore.size-xl .badges {
+	margin: 35px 11px 3px 75px;
+	text-align: right;
+	font-size: .8em;
+}
+
+.trustscore.size-xl .badges .ty-icon {
+	margin-right: -3px;
+}
+
+.trustscore.size-xl .signature {
+	margin: 0 11px 0 75px;
+	font-weight: 500;
+	font-size: .65em;
+}
+
+/* ----------------- L ------------------- */
+
+.trustscore.size-l {
+	width: 108px;
+	height: 86px;
+	border-radius: 4px;
+}
+
+.trustscore.size-l .title {
+	padding: 4px 0;
+	border-radius: 4px 4px 0 0;
+	font-weight: 700;
+	font-size: .9em;
+}
+
+.trustscore.size-l .value {
+	padding: 7px 0;
+	width: 50px;
+	font-size: 1.8em;
+}
+
+.trustscore.size-l .value:after {
+	border-width: 6px;
+}
+
+.trustscore.size-l .score {
+	margin-top: 26px;
+	font-weight: 700;
+	font-size: 1.1em;
+}
+
+.trustscore.size-l .badges {
+	margin: 21px 8px 2px 50px;
+	text-align: right;
+	font-size: .65em;
+}
+
+.trustscore.size-l .badges .ty-icon {
+	margin-right: -2px;
+}
+
+.trustscore.size-l .signature {
+	margin: 0 8px 0 50px;
+	font-weight: 500;
+	font-size: .5em;
+}
+
+/* ----------------- M ------------------- */
+
+.trustscore.size-m .value {
+	margin: 0 8px 0 0;
+	padding: 6px 8px;
+	font-weight: 500;
+	font-size: 2.0em;
+}
+
+.trustscore.size-m .value:after {
+	border-width: 6px;
+}
+
+.trustscore.size-m .score {
+	margin: 0px 10px 0 0;
+	font-weight: 500;
+	font-size: 1.45em;
+}
+
+.trustscore.size-m .badges {
+	font-size: .6em;
+}
+
+.trustscore.size-m .badges .ty-icon {
+	margin-right: -1px;
+}
+
+.trustscore.size-m .counter {
+	margin-top: 4px;
+	color: #999;
+	font-weight: 500;
+	font-style: italic;
+	font-size: .65em;
+}
+
+/* ----------------- S ------------------- */
+
+.trustscore.size-s .value {
+	margin: 0 6px 0 0;
+	padding: 5px 6px;
+	font-weight: 500;
+	font-size: 1.3em;
+}
+
+.trustscore.size-s .value:after {
+	border-width: 4px;
+}
+
+.trustscore.size-s .score {
+	display: inline-block;
+	float: left;
+	margin: 0px 10px 0 0;
+	font-weight: 500;
+	font-size: 1.45em;
+}
+
+.trustscore.size-s .badges {
+	font-size: .6em;
+}
+
+.trustscore.size-s .badges .ty-icon {
+	margin-right: -1px;
+}
+
+.trustscore.size-s .counter {
+	float: left;
+	margin-top: 6px;
+	color: #b5b5b5;
+	font-weight: 500;
+	font-style: italic;
+}
+
+/* ----------------- XS ------------------ */
+
+.trustscore.size-xs .value {
+	margin: 0 3px 0 0;
+	padding: 2px 2px;
+	font-weight: 500;
+	font-size: .85em;
+}
+
+.trustscore.size-xs .value:after {
+	border-width: 2px;
+}
+
+.trustscore.size-xs .score {
+	display: inline-block;
+	float: left;
+	margin: -1px 5px 0 0;
+	font-weight: 500;
+	font-size: .9em;
+}
+
+.trustscore.size-xs .badges {
+	font-size: .3em;
+}
+
+.trustscore.size-xs .counter {
+	float: left;
+	color: #b5b5b5;
+	font-weight: 500;
+	font-style: italic;
+	font-size: .8em;
+}
