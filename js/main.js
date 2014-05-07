@@ -21,19 +21,18 @@
 		*/
 		key: "a06294d3-4d58-45c8-97a1-5c905922e03a",
 		v: "5.16",
+		/*
+		Pass detail=all to receive all categories and sub categories
+		present in this hotel's data.
+		*/
 		detail: "all"
 	});
-	var request = $.ajax({
+	var reviewSummaryRequest = $.ajax({
 		url: url,
 		// Usage of JSONP is not required for server-side calls
 		dataType: "jsonp"
 	}).fail(function() {
 		throw "API request failed!";
-	});
-
-	// when the DOM is ready for rendering, process the API response
-	$(function() {
-		request.done(processApiResponse);
 	});
 
 	/**
@@ -72,15 +71,101 @@
 	}
 
 	/**
+	* Render the review summary.
+	*/
+	function renderReviewsTab(reviewSummary) {
+		var reviewsTabTemplate = $("#tmpl-reviews-tab").html();
+		var templateData = {};
+
+		/*
+		For this visualization, we will visualize the top 5 most
+		frequent categories. For this, they are sorted by their "count"
+		property.
+		*/
+		var categories = reviewSummary["category_list"].sort(function(catA, catB) {
+			return catB["count"] - catA["count"];
+		});
+		/*
+		Remove the overall sentimet category with ID "16" - these
+		opinions are a bit too generic for this visualization.
+		*/
+		categories = categories.filter(function(category) {
+			return category["category_id"] !== "16";
+		});
+		categories = categories.slice(0, 5);
+
+		templateData.categories = categories.map(function(category, index) {
+			return {
+				// activate the first category in the list
+				"class": index === 0 ? "in active" : "",
+				categoryId: category["category_id"],
+				categoryName: category["category_name"],
+				sentiment: category["sentiment"],
+				/*
+				Show up to three returned highlights. If no
+				highlights are present, the "short_text" is
+				shown instead, which is guaranteed to be there
+				for all category-language combinations.
+				*/
+				highlights: category["highlight_list"].concat([category["short_text"]]).slice(0, 3),
+				/*
+				Transform sub categories into the format
+				expected by the template. Order by sentiment
+				from positive to negative this time.
+				*/
+				subCategories: category["sub_category_list"].sort(function(catA, catB) {
+					return catB["score"] - catA["score"];
+				}).map(function(subCategory) {
+					return {
+						sentiment: subCategory["sentiment"],
+						/*
+						Remove the markers in the form of
+						<pos>..</pos>, <neg>..</neg> and
+						<neu>..</neu> with a regular
+						expression.
+						*/
+						text: subCategory["text"].replace(/<\/?(?:pos|neu|neg)>/g, ''),
+						score: subCategory["score"]
+					};
+				})
+			};
+		});
+
+		/*
+		Display the "good to know" categories in a separate section.
+		*/
+		templateData.goodToKnow = reviewSummary["good_to_know_list"].map(function(goodToKnow) {
+			return {
+				/*
+				Show a positive icon for positive sentiment,
+				negative otherwise.
+				*/
+				sentiment: goodToKnow["sentiment"] === "pos" ? "ok" : "remove",
+				text: goodToKnow["short_text"]
+			};
+		});
+
+		var reviewsTabRendered = Mustache.render(reviewsTabTemplate, templateData);
+		$("#review-summary").append(reviewsTabRendered);
+
+	}
+
+	/**
 	Process a response from the TrustYou Review Summary API.
 	*/
-	function processApiResponse(data) {
+	function processReviewSummaryResponse(data) {
 		// check whether the API request was successful
 		if (data.meta.code !== 200) {
 			throw "API request failed!";
 		}
 		var reviewSummary = data.response;
 		renderHotelInfo(hotelData, reviewSummary);
+		renderReviewsTab(reviewSummary);
 	}
 
-})($, Mustache);
+	// when the DOM is ready for rendering, process the API response
+	$(function() {
+		reviewSummaryRequest.done(processReviewSummaryResponse);
+	});
+
+}($, Mustache));

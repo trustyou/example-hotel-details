@@ -68,6 +68,62 @@
       </div>
     </script>
 
+    <!-- HTML template for review summary -->
+    <script id="tmpl-reviews-tab" type="x-tmpl-mustache">
+      <div class="row">
+	<div class="col-xs-8">
+	  <section class="highlights">
+	    <h2>Highlights</h2>
+	    <ul class="nav nav-pills nav-stacked">
+	      {{#categories}}
+	      <!-- TODO add class="active" -->
+	      <li class="{{class}}"><a href="#review-summary-{{categoryId}}" data-toggle="pill">{{categoryName}}</a></li>
+	      {{/categories}}
+	    </ul>
+	    
+	    <div class="pill-content">
+	      {{#categories}}
+	      <!-- TODO add class="in active" -->
+	      <div class="pill-pane fade {{class}}" id="review-summary-{{categoryId}}">
+		<div class="sentiment {{sentiment}}">
+		  <i class="ty-icon ty-icon-users"></i>
+		  <p class="snippets">
+		    {{#highlights}}
+		    <span>&ldquo;{{text}}&rdquo;</span>
+		    {{/highlights}}
+		  </p>
+		</div>
+		{{#subCategories}}
+		<div class="subcategory">
+		  <div class="result-chart {{sentiment}}">
+		    <div class="result-value" style="width: {{score}}%;"></div>
+		  </div>
+		  <div class="result-description">
+		    <p>{{text}}</p>
+		  </div>
+		</div>
+		{{/subCategories}}
+	      </div>
+	      {{/categories}}
+	    </div>
+	  </section>
+	</div>
+      
+	<div class="col-xs-4">
+	  <section class="good-to-know">
+	    <h2>Good to know</h2>
+	    <ul>
+	      {{#goodToKnow}}
+	      <li>
+		<i class="ty-icon ty-icon-{{sentiment}}"></i>{{text}}
+	      </li>
+	      {{/goodToKnow}}
+	    </ul>
+	  </section>
+	</div>
+      </div>
+    </script>
+
   </head>
 
   <body>
@@ -83,6 +139,7 @@
 	      Reviews
 	    </a>
 	  </li>
+	  <!--
 	  <li>
 	    <a href="#location" data-toggle="tab">
 	      <i class="ty-icon ty-icon-marker"></i>
@@ -95,39 +152,23 @@
 	      Social
 	    </a>
 	  </li>
-	  <li>
-	    <a href="#gallery" data-toggle="tab">
-	      <i class="ty-icon ty-icon-picture"></i>
-	      Gallery
-	    </a>
-	  </li>
-	  <li>
-	    <a href="#services" data-toggle="tab">
-	      <i class="ty-icon ty-icon-call-bell"></i>
-	      Services
-	    </a>
-	  </li>
-	  <li>
-	    <a href="#rooms" data-toggle="tab">
-	      <i class="ty-icon ty-icon-bed"></i>
-	      Rooms
-	    </a>
-	  </li>
+	  -->
 	</ul>
-	
       </div>
-
-      <div class="container">
-
-	<div class="tab-pane fade in active review-summary" id="review-summary"></div>
-	
-      </div>
-
     </header>
+
+    <div class="container">
+      <div class="tab-content">
+	<div class="tab-pane fade in active review-summary" id="review-summary"></div>
+      </div>
+
+      <img src="http://api.trustyou.com/static/img/powered-by-trustyou-small.png" alt="powered by TrustYou" class="powered-by-trustyou"/>	
+    </div>
     
     <!-- See js/main.js for what happens next :) -->
     <script src="http://cdn.jsdelivr.net/mustache.js/0.8.1/mustache.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
   </body>
   

@@ -38,24 +38,9 @@ h1 {
 	color: #f37159;
 }
 
-/* Powered by */
-
-a.verified-reviews {
-	display: block;
+img.powered-by-trustyou {
 	float: right;
-	margin: 20px 0 40px;
-}
-
-a.verified-reviews:before,
-a.verified-reviews:after {
-	display: table;
-	clear: both;
-	content: '';
-}
-
-a.verified-reviews:focus {
-	outline: none;
-	border: none;
+	margin-top: 20px;
 }
 
 /* Header */
