@@ -107,7 +107,7 @@
 				shown instead, which is guaranteed to be there
 				for all category-language combinations.
 				*/
-				highlights: category["highlight_list"].concat([category["short_text"]]).slice(0, 3),
+				highlights: category["highlight_list"].concat({text: category["short_text"]}).slice(0, 3),
 				/*
 				Transform sub categories into the format
 				expected by the template. Order by sentiment
