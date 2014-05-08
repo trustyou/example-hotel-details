@@ -11,6 +11,10 @@ p {
 	line-height: 1.6em;
 }
 
+b, strong {
+	font-weight: 500;
+}
+
 h1 {
 	margin: 0;
 	color: #666;
