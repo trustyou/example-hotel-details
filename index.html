@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="http://cdn.trustyou.com/common/trustyou-iconic/css/trustyou-iconic.css"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/trustscore.css"/>
-    <link rel="stylesheet" href="css/review-summary-hotel-details.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
 
     <!-- This demo uses the popular MustacheJS templating engine to dynamically build an HTML page in the browser. Depending on your use case, you will likely use a server-side templating language. -->
 
@@ -139,7 +139,6 @@
 	      Reviews
 	    </a>
 	  </li>
-	  <!--
 	  <li>
 	    <a href="#location" data-toggle="tab">
 	      <i class="ty-icon ty-icon-marker"></i>
@@ -152,18 +151,114 @@
 	      Social
 	    </a>
 	  </li>
-	  -->
 	</ul>
       </div>
     </header>
 
     <div class="container">
-      <div class="tab-content">
-	<div class="tab-pane fade in active review-summary" id="review-summary"></div>
-      </div>
-
-      <img src="http://api.trustyou.com/static/img/powered-by-trustyou-small.png" alt="powered by TrustYou" class="powered-by-trustyou"/>	
+    	<div class="tab-content">
+    		<div class="tab-pane fade in active review-summary" id="review-summary"></div>
+    		<div class="tab-pane fade" id="location">
+    			<iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/location.html" frameborder="0" width="100%" height="800px"></iframe>
+    		</div>
+    		<div class="tab-pane fade" id="social">
+    			<div class="row">
+    				<div class="col-xs-6">
+    					<section class="social foursquare">
+    						<div class="post">
+    							<div class="social-badge">
+    								<i class="ty-icon ty-icon-foursquare"></i>
+    							</div>
+    							<div class="avatar">
+    								<a href="">
+    									<img src="img/avatar.jpg" class="img-responsive" height="100" width="100" >
+    								</a>
+    							</div>
+    							<p class="publish-date">03 May</p>
+    							<p class="name"><a href="" target="_blank">John Doe</a></p>
+    							<p class="source"><a href="" target="_blank">on Foursquare</a></p>
+    							<p class="content">
+    								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, modi, doloribus hic veniam repudiandae nisi doloremque libero provident ipsa incidunt illum eveniet laborum numquam? Nesciunt quasi veniam unde non et?
+    							</p>
+    						</div>
+    						<div class="post">
+    							<div class="social-badge">
+    								<i class="ty-icon ty-icon-foursquare"></i>
+    							</div>
+    							<div class="avatar">
+    								<a href="">
+    									<img src="img/avatar.jpg" class="img-responsive" height="100" width="100" >
+    								</a>
+    							</div>
+    							<p class="publish-date">03 May</p>
+    							<p class="name"><a href="" target="_blank">John Doe</a></p>
+    							<p class="source"><a href="" target="_blank">on Foursquare</a></p>
+    							<p class="content">
+    								Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    							</p>
+    						</div>
+    						<div class="post">
+    							<div class="social-badge">
+    								<i class="ty-icon ty-icon-foursquare"></i>
+    							</div>
+    							<div class="avatar">
+    								<a href="">
+    									<img src="img/avatar.jpg" class="img-responsive" height="100" width="100" >
+    								</a>
+    							</div>
+    							<p class="publish-date">03 May</p>
+    							<p class="name"><a href="" target="_blank">John Doe</a></p>
+    							<p class="source"><a href="" target="_blank">on Foursquare</a></p>
+    							<p class="content">
+    								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, modi, doloribus hic veniam repudiandae nisi doloremque.
+    							</p>
+    						</div>
+    					</section>
+    				</div>
+    				<div class="col-xs-6">
+    					<section class="social google-plus">
+    						<div class="post">
+    							<div class="social-badge">
+    								<i class="ty-icon ty-icon-google-plus"></i>
+    							</div>
+    							<div class="avatar">
+    								<a href="">
+    									<img src="img/avatar.jpg" class="img-responsive" height="100" width="100" >
+    								</a>
+    							</div>
+    							<p class="publish-date">03 May</p>
+    							<p class="name"><a href="" target="_blank">John Doe</a></p>
+    							<p class="source"><a href="" target="_blank">on Google Plus</a></p>
+    							<p class="content">
+    								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, modi, doloribus hic veniam repudiandae nisi doloremque libero provident ipsa incidunt illum eveniet laborum numquam? Nesciunt quasi veniam unde non et? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, ab, blanditiis, rem, optio eveniet voluptates quis sit beatae vel inventore quam aspernatur eaque alias officia quibusdam voluptatibus eum sapiente ea?
+    							</p>
+    						</div>
+    						<div class="post">
+    							<div class="social-badge">
+    								<i class="ty-icon ty-icon-google-plus"></i>
+    							</div>
+    							<div class="avatar">
+    								<a href="">
+    									<img src="img/avatar.jpg" class="img-responsive" height="100" width="100" >
+    								</a>
+    							</div>
+    							<p class="publish-date">03 May</p>
+    							<p class="name"><a href="" target="_blank">John Doe</a></p>
+    							<p class="source"><a href="" target="_blank">on Google Plus</a></p>
+    							<p class="content">
+    								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, modi, doloribus hic veniam repudiandae nisi doloremque libero provident ipsa incidunt illum eveniet laborum numquam?
+    							</p>
+    						</div>
+    					</section>
+    				</div>
+    			</div>
+    		</div>
+		    <a href="http://trustyou.com" class="verified-reviews">
+		    	<img src="http://api.trustyou.com/static/img/powered-by-trustyou-small.png" alt="Verified Reviews TrustYou" />
+		    </a>
+    	</div>
     </div>
+</div>
     
     <!-- See js/main.js for what happens next :) -->
     <script src="http://cdn.jsdelivr.net/mustache.js/0.8.1/mustache.min.js"></script>
