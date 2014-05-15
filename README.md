@@ -1,5 +1,5 @@
 Hotel details
-=============
+-------------
 
 Example of building a rich hotel detail page which in addition to the hotels star rating and address also includes:
 - TrustScore seal with review counter
@@ -11,6 +11,12 @@ As a demo we also integrated a tab navigation to group more information such as:
 - review summary
 - location reviews
 - social reviews
+
+
+Live example
+------------
+
+You can try out the live demo of this example [here](http://trustyou.github.io/example-hotel-details/).
 
 
 ![alt tag](img/preview.jpg)
