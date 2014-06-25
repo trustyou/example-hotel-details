@@ -60,12 +60,19 @@ a.verified-reviews:after {
 /* Header */
 
 header {
-	border-bottom: 1px solid #ddd;
-	background: #f5f5f5;
+	border-bottom: 1px solid #e5e5e5;
+	background: #f9f9f9;
 }
 
 header .container {
-	padding: 50px 0 0;
+	padding: 0 0 0;
+}
+
+header .hotel-title {
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	padding: 30px 0;
+	margin-bottom: 30px;
 }
 
 header .thumbnail {
@@ -150,10 +157,24 @@ header .hotel-type p .ty-icon {
 	font-size: 1.6em;
 }
 
+/* Traveler type distribution */
+
+header .traveler-type-distribution {
+	margin-top: 15px;
+	margin-left: -10px;
+}
+
+header .traveler-type-distribution iframe {
+	width: 100%;
+	height: 80px;
+	border: none;
+	background: transparent;
+}
+
 /* TrustScore */
 
 header .trustscore {
-	margin: 15px 0;
+	margin: 0 0 15px;
 	width: 200px;
 }
 
@@ -163,6 +184,7 @@ header .nav-tabs {
 	display: block;
 	clear: both;
 	margin-bottom: -1px;
+	border-bottom-color: #e5e5e5;
 }
 
 header .nav-tabs>li>a, 
@@ -176,6 +198,9 @@ header .nav-tabs>li>a:focus {
 header .nav-tabs>li.active>a, 
 header .nav-tabs>li.active>a:hover, 
 header .nav-tabs>li.active>a:focus {
+	border-color: #e5e5e5;
+	border-bottom-color: transparent;
+	border-radius: 6px 6px 0 0;
 	color: #428bca;
 }
 
@@ -188,6 +213,19 @@ header .nav-tabs>li .ty-icon {
 	float: left;
 	margin: 2px 5px 0 0;
 	font-size: 1.2em;
+}
+
+/* Score distribution */
+
+.score-distribution {
+
+}
+
+.score-distribution iframe {
+	width: 100%;
+	height: 150px;
+	border: none;
+	background: transparent;
 }
 
 /* Review summary */
@@ -408,13 +446,13 @@ section.social .post .publish-date {
 section.social .post .name a,
 section.social .post .name a:link,
 section.social .post .name a:visited{
-	font-weight: 500;
 	color: #333;
+	font-weight: 500;
 }
 
 section.social .post .source{
-	font-size: .9em;
 	color: #333;
+	font-size: .9em;
 }
 
 section.social .post .content{

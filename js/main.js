@@ -51,6 +51,22 @@
     });
 
 	/**
+	* Render the hotel title, address & rating.
+	*/
+	function renderHotelTitle(hotelData, reviewSummary) {
+		var hotelTitlteTemplate = $("#tmpl-hotel-title").html();
+		var templateData = {
+			name: hotelData.name,
+			address: hotelData.address,
+			reviewsCount: reviewSummary["reviews_count"],
+			trustScore: reviewSummary["summary"].score,
+		};
+
+		var hotelTitleRendered = Mustache.render(hotelTitlteTemplate, templateData);
+		$("#hotel-title").append(hotelTitleRendered);
+	}
+
+	/**
 	* Render the basic hotel info.
 	*/
 	function renderHotelInfo(hotelData, reviewSummary) {
@@ -244,6 +260,7 @@ $("#social").append(socialRendered);
 			throw "API request failed!";
 		}
 		var reviewSummary = data.response;
+		renderHotelTitle(hotelData, reviewSummary);
 		renderHotelInfo(hotelData, reviewSummary);
 		renderReviewsTab(reviewSummary);
 		renderLocationTab(hotelData);

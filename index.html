@@ -1,217 +1,230 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>TrustYou API &ndash; Hotel Detail Demo</title>
+<head>
+  <meta charset="utf-8"/>
+  <title>TrustYou API &ndash; Hotel Detail Demo</title>
 
-    <!-- These CSS files are for styling purposes only; they are not required to visualize the TrustYou API -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,500,700"/>
-    <link rel="stylesheet" href="http://cdn.trustyou.com/common/trustyou-iconic/css/trustyou-iconic.css"/>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/trustscore.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+  <!-- These CSS files are for styling purposes only; they are not required to visualize the TrustYou API -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,500,700"/>
+  <link rel="stylesheet" href="http://cdn.trustyou.com/common/trustyou-iconic/css/trustyou-iconic.css"/>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/trustscore.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
 
-    <!-- This demo uses the popular MustacheJS templating engine to dynamically build an HTML page in the browser. Depending on your use case, you will likely use a server-side templating language. -->
+  <!-- This demo uses the popular MustacheJS templating engine to dynamically build an HTML page in the browser. Depending on your use case, you will likely use a server-side templating language. -->
 
-    <!-- HTML template for basic hotel info -->
-    <script id="tmpl-hotel-info" type="x-tmpl-mustache">
-      <div class="col-xs-8">
-        <h1>
-          {{name}}
-          <span class="stars">
-            <span class="active">&#x2605;</span>
-            <span class="active">&#x2605;</span>
-            <span class="active">&#x2605;</span>
-            <span class="active">&#x2605;</span>
-            <span class="active">&#x2605;</span>
-          </span>
-        </h1>
-        <h2>
-          <i class="ty-icon ty-icon-marker"></i>
-          {{address}}
-        </h2>
+  <!-- HTML template for hotel title, address & rating -->
+  <script id="tmpl-hotel-title" type="x-tmpl-mustache">
+    <h1>
+      {{name}}
+      <span class="stars">
+        <span class="active">&#x2605;</span>
+        <span class="active">&#x2605;</span>
+        <span class="active">&#x2605;</span>
+        <span class="active">&#x2605;</span>
+        <span class="active">&#x2605;</span>
+      </span>
+    </h1>
+    <h2>
+      <i class="ty-icon ty-icon-marker"></i>
+      {{address}}
+    </h2>
+  </script>
 
-        <div class="trustscore size-m pos">
-          <div class="value">{{trustScore}}</div>
-          <div class="badges">
-            <i class="ty-icon ty-icon-badge-full neg"></i>
-            <i class="ty-icon ty-icon-badge-full neu"></i>
-            <i class="ty-icon ty-icon-badge-full pos"></i>
-          </div>
-          <div class="score">Excellent </div>
-          <div class="counter">{{reviewsCount}} Reviews</div>
+  <!-- HTML template for basic hotel info -->
+  <script id="tmpl-hotel-info" type="x-tmpl-mustache">
+    <div class="col-xs-8">
+      <div class="trustscore size-m pos">
+        <div class="value">{{trustScore}}</div>
+        <div class="badges">
+          <i class="ty-icon ty-icon-badge-full neg"></i>
+          <i class="ty-icon ty-icon-badge-full neu"></i>
+          <i class="ty-icon ty-icon-badge-full pos"></i>
         </div>
-
-        <h3>
-          {{summary}}
-        </h3>
-
-        <div class="hotel-type">
-          {{#hotelTypes}}
-          <p>
-            <i class="ty-icon ty-icon-{{categoryId}}"></i>
-            {{&text}}
-          </p>
-          {{/hotelTypes}}
-        </div>
+        <div class="score">Excellent </div>
+        <div class="counter">{{reviewsCount}} Reviews</div>
       </div>
+
+      <h3>
+        {{summary}}
+      </h3>
+
+      <div class="hotel-type">
+        {{#hotelTypes}}
+        <p>
+          <i class="ty-icon ty-icon-{{categoryId}}"></i>
+          {{&text}}
+        </p>
+        {{/hotelTypes}}
+      </div>
+      <div class="traveler-type-distribution">
+        <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/traveler_distribution.html" />
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="thumbnail">
+        <div class="ranking">
+          <div class="rank-wrapper">
+            <span>Ranked</span>
+            <span>Top {{popularity}}%</span>
+          </div>
+        </div>
+        <img src="{{imgUrl}}" class="img-responsive" alt="{{name}}"/>
+      </div>
+    </div>
+  </script>
+
+  <!-- HTML template for review summary -->
+  <script id="tmpl-reviews-tab" type="x-tmpl-mustache">
+    <div class="row">
+      <div class="col-xs-8">      
+        <section class="score-distribution">
+          <h2>Score distribution</h2>
+          <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/trust_score_distribution.html" />
+        </section>
+        <section class="highlights">
+          <h2>Highlights</h2>
+          <ul class="nav nav-pills nav-stacked">
+            {{#categories}}
+            <li class="{{class}}"><a href="#review-summary-{{categoryId}}" data-toggle="pill">{{categoryName}}</a></li>
+            {{/categories}}
+          </ul>
+
+          <div class="pill-content">
+            {{#categories}}
+            <div class="pill-pane fade {{class}}" id="review-summary-{{categoryId}}">
+              <div class="sentiment {{sentiment}}">
+                <i class="ty-icon ty-icon-users"></i>
+                <p class="snippets">
+                  {{#highlights}}
+                  <span>&ldquo;{{text}}&rdquo;</span>
+                  {{/highlights}}
+                </p>
+              </div>
+              {{#subCategories}}
+              <div class="subcategory">
+                <div class="result-chart {{sentiment}}">
+                  <div class="result-value" style="width: {{score}}%;"></div>
+                </div>
+                <div class="result-description">
+                  <p>{{text}}</p>
+                </div>
+              </div>
+              {{/subCategories}}
+            </div>
+            {{/categories}}
+          </div>
+        </section>
+      </div>
+
       <div class="col-xs-4">
-        <div class="thumbnail">
-          <div class="ranking">
-            <div class="rank-wrapper">
-              <span>Ranked</span>
-              <span>Top {{popularity}}%</span>
-            </div>
-          </div>
-          <img src="{{imgUrl}}" class="img-responsive" alt="{{name}}"/>
-        </div>
-      </div>
-    </script>
-
-    <!-- HTML template for review summary -->
-    <script id="tmpl-reviews-tab" type="x-tmpl-mustache">
-      <div class="row">
-        <div class="col-xs-8">
-          <section class="highlights">
-            <h2>Highlights</h2>
-            <ul class="nav nav-pills nav-stacked">
-              {{#categories}}
-              <li class="{{class}}"><a href="#review-summary-{{categoryId}}" data-toggle="pill">{{categoryName}}</a></li>
-              {{/categories}}
-            </ul>
-
-            <div class="pill-content">
-              {{#categories}}
-              <div class="pill-pane fade {{class}}" id="review-summary-{{categoryId}}">
-                <div class="sentiment {{sentiment}}">
-                  <i class="ty-icon ty-icon-users"></i>
-                  <p class="snippets">
-                    {{#highlights}}
-                    <span>&ldquo;{{text}}&rdquo;</span>
-                    {{/highlights}}
-                  </p>
-                </div>
-                {{#subCategories}}
-                <div class="subcategory">
-                  <div class="result-chart {{sentiment}}">
-                    <div class="result-value" style="width: {{score}}%;"></div>
-                  </div>
-                  <div class="result-description">
-                    <p>{{text}}</p>
-                  </div>
-                </div>
-                {{/subCategories}}
-              </div>
-              {{/categories}}
-            </div>
-          </section>
-        </div>
-
-        <div class="col-xs-4">
-          <section class="good-to-know">
-            <h2>Good to know</h2>
-            <ul>
-              {{#goodToKnow}}
-              <li>
-                <i class="ty-icon ty-icon-{{sentiment}}"></i>{{text}}
-              </li>
-              {{/goodToKnow}}
-            </ul>
-          </section>
-        </div>
-      </div>
-
-      <a href="http://trustyou.com" class="verified-reviews">
-        <img src="http://api.trustyou.com/static/img/verified-reviews.png" alt="powered by TrustYou" class="powered-by-trustyou"/>
-      </a>
-
-    </script>
-
-    <!-- Location widget will be used as an iframe, so does not need a template -->
-
-    <!-- HTML template for social -->
-    <script id="tmpl-social-tab" type="x-tmpl-mustache">
-      <div class="row">
-        {{#sources}}
-        <div class="col-xs-6">
-          <section class="social {{socialSource}}">
-
-            {{#posts}}
-            <div class="post">
-              <div class="social-badge">
-                <i class="ty-icon ty-icon-{{socialSourceClass}}"></i>
-              </div>
-              <p class="publish-date">
-                {{publishDate}}
-              </p>
-              <p class="name">
-                <a href="" target="_blank">{{userName}}</a>
-              </p>
-              <p class="source">
-                <a href="" target="_blank">
-                  on {{socialSource}}
-                </a>
-              </p>
-              <p class="content">
-                {{text}}
-              </p>
-            </div>
-            {{/posts}}
-
-          </section>
-        </div>
-        {{/sources}}
-      </div>
-      <a href="http://trustyou.com" class="verified-reviews">
-        <img src="http://api.trustyou.com/static/img/verified-reviews.png" alt="powered by TrustYou" class="powered-by-trustyou"/>
-      </a>
-
-    </script>
-  </head>
-
-  <body>
-    <header>
-      <div class="container">
-        <div class="row" id="hotel-info"></div>
-        <ul class="nav nav-tabs">
-          <li class="active">
-            <a href="#review-summary" data-toggle="tab">
-              <i class="ty-icon ty-icon-chart-bars"></i>
-              Reviews
-            </a>
-          </li>
-          <li>
-            <a href="#location" data-toggle="tab">
-              <i class="ty-icon ty-icon-marker"></i>
-              Location
-            </a>
-          </li>
-          <li>
-            <a href="#social" data-toggle="tab">
-              <i class="ty-icon ty-icon-users"></i>
-              Social
-            </a>
-          </li>
-        </ul>
-      </div>
-    </header>
-
-    <div class="container">
-      <div class="tab-content">
-        <div class="tab-pane fade in active review-summary" id="review-summary"></div>
-        <!-- Location iframe -->
-        <div class="tab-pane fade" id="location">
-          <iframe id="iframe-location" src="" frameborder="0" width="100%" height="2200px"></iframe>
-        </div>
-        <div class="tab-pane fade" id="social"></div>
+        <section class="good-to-know">
+          <h2>Good to know</h2>
+          <ul>
+            {{#goodToKnow}}
+            <li>
+              <i class="ty-icon ty-icon-{{sentiment}}"></i>{{text}}
+            </li>
+            {{/goodToKnow}}
+          </ul>
+        </section>
       </div>
     </div>
 
-    <!-- See js/main.js for what happens next :) -->
-    <script src="http://cdn.jsdelivr.net/mustache.js/0.8.1/mustache.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+    <a href="http://trustyou.com" class="verified-reviews">
+      <img src="http://api.trustyou.com/static/img/verified-reviews.png" alt="powered by TrustYou" class="powered-by-trustyou"/>
+    </a>
+
+  </script>
+
+  <!-- Location widget will be used as an iframe, so does not need a template -->
+
+  <!-- HTML template for social -->
+  <script id="tmpl-social-tab" type="x-tmpl-mustache">
+    <div class="row">
+      {{#sources}}
+      <div class="col-xs-6">
+        <section class="social {{socialSource}}">
+
+          {{#posts}}
+          <div class="post">
+            <div class="social-badge">
+              <i class="ty-icon ty-icon-{{socialSourceClass}}"></i>
+            </div>
+            <p class="publish-date">
+              {{publishDate}}
+            </p>
+            <p class="name">
+              <a href="" target="_blank">{{userName}}</a>
+            </p>
+            <p class="source">
+              <a href="" target="_blank">
+                on {{socialSource}}
+              </a>
+            </p>
+            <p class="content">
+              {{text}}
+            </p>
+          </div>
+          {{/posts}}
+
+        </section>
+      </div>
+      {{/sources}}
+    </div>
+    <a href="http://trustyou.com" class="verified-reviews">
+      <img src="http://api.trustyou.com/static/img/verified-reviews.png" alt="powered by TrustYou" class="powered-by-trustyou"/>
+    </a>
+
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="hotel-title">
+      <div class="container" id="hotel-title"></div>
+    </div>
+    <div class="container">
+      <div class="row" id="hotel-info"></div>
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#review-summary" data-toggle="tab">
+            <i class="ty-icon ty-icon-chart-bars"></i>
+            Reviews
+          </a>
+        </li>
+        <li>
+          <a href="#location" data-toggle="tab">
+            <i class="ty-icon ty-icon-marker"></i>
+            Location
+          </a>
+        </li>
+        <li>
+          <a href="#social" data-toggle="tab">
+            <i class="ty-icon ty-icon-users"></i>
+            Social
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="tab-content">
+      <div class="tab-pane fade in active review-summary" id="review-summary"></div>
+      <!-- Location iframe -->
+      <div class="tab-pane fade" id="location">
+        <iframe id="iframe-location" src="" frameborder="0" width="100%" height="2200px"></iframe>
+      </div>
+      <div class="tab-pane fade" id="social"></div>
+    </div>
+  </div>
+
+  <!-- See js/main.js for what happens next :) -->
+  <script src="http://cdn.jsdelivr.net/mustache.js/0.8.1/mustache.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
 
 </html>
