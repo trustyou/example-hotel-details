@@ -34,21 +34,9 @@
   <!-- HTML template for basic hotel info -->
   <script id="tmpl-hotel-info" type="x-tmpl-mustache">
     <div class="col-xs-8">
-      <div class="trustscore size-m pos">
-        <div class="value">{{trustScore}}</div>
-        <div class="badges">
-          <i class="ty-icon ty-icon-badge-full neg"></i>
-          <i class="ty-icon ty-icon-badge-full neu"></i>
-          <i class="ty-icon ty-icon-badge-full pos"></i>
-        </div>
-        <div class="score">Excellent </div>
-        <div class="counter">{{reviewsCount}} Reviews</div>
-      </div>
-
       <h3>
         {{summary}}
       </h3>
-
       <div class="hotel-type">
         {{#hotelTypes}}
         <p>
@@ -57,8 +45,8 @@
         </p>
         {{/hotelTypes}}
       </div>
-      <div class="traveler-type-distribution">
-        <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/traveler_distribution.html" />
+      <div class="trustscore-distribution">
+        <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/trust_score_distribution.html" />
       </div>
     </div>
     <div class="col-xs-4">
@@ -77,10 +65,10 @@
   <!-- HTML template for review summary -->
   <script id="tmpl-reviews-tab" type="x-tmpl-mustache">
     <div class="row">
-      <div class="col-xs-8">      
-        <section class="score-distribution">
-          <h2>Score distribution</h2>
-          <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/trust_score_distribution.html" />
+      <div class="col-xs-8"> 
+        <section class="traveler-type-distribution">
+          <h2>Travelers types</h2>
+          <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/traveler_distribution.html" />
         </section>
         <section class="highlights">
           <h2>Highlights</h2>

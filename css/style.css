@@ -69,8 +69,8 @@ header .container {
 }
 
 header .hotel-title {
-	background: #eee;
-	border-bottom: 1px solid #ddd;
+	background: #f3f3f3;
+	border-bottom: 1px solid #e0e0e0;
 	padding: 30px 0;
 	margin-bottom: 30px;
 }
@@ -92,7 +92,7 @@ header h2 .ty-icon {
 }
 
 header h3 {
-	margin: 0 0 15px;
+	margin: 0 50px 15px 0;
 	font-size: 1.0em;
 	line-height: 1.4em;
 }
@@ -144,6 +144,7 @@ header .ranking span {
 
 header .hotel-type{
 	padding-left: 30px;
+	margin-bottom: 20px;
 }
 
 header .hotel-type p{
@@ -159,14 +160,15 @@ header .hotel-type p .ty-icon {
 
 /* Traveler type distribution */
 
-header .traveler-type-distribution {
+.traveler-type-distribution {
 	margin-top: 15px;
-	margin-left: -10px;
+	margin-bottom: 10px;
 }
 
-header .traveler-type-distribution iframe {
+.traveler-type-distribution iframe {
 	width: 100%;
 	height: 80px;
+	margin-left: -10px;
 	border: none;
 	background: transparent;
 }
@@ -217,11 +219,7 @@ header .nav-tabs>li .ty-icon {
 
 /* Score distribution */
 
-.score-distribution {
-
-}
-
-.score-distribution iframe {
+.trustscore-distribution iframe {
 	width: 100%;
 	height: 150px;
 	border: none;
