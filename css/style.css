@@ -60,12 +60,19 @@ a.verified-reviews:after {
 /* Header */
 
 header {
-	border-bottom: 1px solid #ddd;
-	background: #f5f5f5;
+	border-bottom: 1px solid #e5e5e5;
+	background: #f9f9f9;
 }
 
 header .container {
-	padding: 50px 0 0;
+	padding: 0 0 0;
+}
+
+header .hotel-title {
+	background: #f3f3f3;
+	border-bottom: 1px solid #e0e0e0;
+	padding: 30px 0;
+	margin-bottom: 30px;
 }
 
 header .thumbnail {
@@ -85,7 +92,7 @@ header h2 .ty-icon {
 }
 
 header h3 {
-	margin: 0 0 15px;
+	margin: 0 50px 15px 0;
 	font-size: 1.0em;
 	line-height: 1.4em;
 }
@@ -136,24 +143,170 @@ header .ranking span {
 /* Hotel type */
 
 header .hotel-type{
-	padding-left: 30px;
+	padding-left: 25px;
+	margin-bottom: 20px;
 }
 
 header .hotel-type p{
-	margin-bottom: 0;
+	margin-bottom: 3px;
 	color: #666;
 }
 
 header .hotel-type p .ty-icon {
 	float: left;
 	margin-left: -30px;
-	font-size: 1.6em;
+	margin-top: 2px;
+	font-size: 1.2em;
+}
+
+/* Traveler languages */
+
+.traveler-language {
+	z-index: 100;
+	margin-bottom: 30px;
+}
+
+.traveler-language:before,
+.traveler-language:after {
+	display: table;
+	content: '';
+	clear: both;
+}
+
+.traveler-language [data-toggle="dropdown"] {
+	display: block;
+	padding: 5px 30px 5px 15px;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	font-weight: 400;
+	font-size: 1.1em;
+	cursor: pointer;
+	text-decoration: none;
+	background: #fafafa;
+}
+
+.traveler-language [data-toggle="dropdown"]:hover {
+	background: #f5f5f5;
+}
+
+.traveler-language [data-toggle="dropdown"]:active {
+	background: #f3f3f3;
+	color: #333;
+}
+
+.traveler-language.open [data-toggle="dropdown"] {
+	background: #fff;
+	border-color: #ddd;
+	border-bottom-color: #fff;
+	border-radius: 4px 4px 0 0;
+}
+
+.traveler-language [data-toggle="dropdown"] .language-type {
+	color: #689cd4;
+	text-align: left;
+	font-size: 1.0em;
+}
+
+.traveler-language [data-toggle="dropdown"] .value{
+	color: #333;
+	display: block;
+	text-align: left;
+	font-weight: 300;
+	font-size: .85em;
+}
+
+.traveler-language [data-toggle="dropdown"] .ty-icon-language {
+	float: left;
+	font-size: 1.9em;
+	margin: 4px 10px 0 0;
+	color: #999;
+	-webkit-transition: color 0.1s ease-in;
+	-moz-transition: color 0.1s ease-in;
+	-o-transition: color 0.1s ease-in;
+	transition: color 0.1s ease-in;
+}
+
+.traveler-language.open [data-toggle="dropdown"] .ty-icon-language {
+	color: #666;
+}
+
+.traveler-language [data-toggle="dropdown"] [class*="ty-icon-chevron"] {
+	position: absolute;
+	right: 15px;
+	top: 11px;
+	margin-left: 3px;
+	color: #689cd4;
+	font-size: .65em;
+	-webkit-transition: -webkit-transform 0.2s ease;
+	-moz-transition: -moz-transform 0.2s ease;
+	-o-transition: -o-transform 0.2s ease;
+	transition: transform 0.2s ease;
+}
+
+.traveler-language.open [data-toggle="dropdown"] [class*="ty-icon-chevron"]{
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.traveler-language  .dropdown-menu {
+	width: 100%;
+	border-radius: 0 0 4px 4px;
+	border-top: none;
+	border-color: #ddd;
+	margin-top: -1px;
+	max-height: 220px;
+	overflow: auto;
+}
+
+.traveler-language  .dropdown-menu li a {
+	position: relative;
+	display: block;
+	padding-right: 30px;
+	width: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 5px 10px;
+}
+
+.traveler-language  .dropdown-menu li a:hover {
+	background: #f9f9f9;
+	cursor: pointer;
+}
+
+.traveler-language  .dropdown-menu li.active a {
+	color: #08c;
+	cursor: default;
+	background: #f5f5f5;
+}
+
+.traveler-language  .dropdown-menu .value {
+	position: absolute;
+	right: 15px;
+	color: #aaa;
+	font-weight: 300;
+}
+
+/* Traveler type distribution */
+
+.traveler-type-distribution {
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.traveler-type-distribution iframe {
+	width: 100%;
+	height: 80px;
+	margin-left: -10px;
+	border: none;
+	background: transparent;
 }
 
 /* TrustScore */
 
 header .trustscore {
-	margin: 15px 0;
+	margin: 0 0 15px;
 	width: 200px;
 }
 
@@ -163,6 +316,7 @@ header .nav-tabs {
 	display: block;
 	clear: both;
 	margin-bottom: -1px;
+	border-bottom-color: #e5e5e5;
 }
 
 header .nav-tabs>li>a, 
@@ -176,6 +330,9 @@ header .nav-tabs>li>a:focus {
 header .nav-tabs>li.active>a, 
 header .nav-tabs>li.active>a:hover, 
 header .nav-tabs>li.active>a:focus {
+	border-color: #e5e5e5;
+	border-bottom-color: transparent;
+	border-radius: 6px 6px 0 0;
 	color: #428bca;
 }
 
@@ -188,6 +345,15 @@ header .nav-tabs>li .ty-icon {
 	float: left;
 	margin: 2px 5px 0 0;
 	font-size: 1.2em;
+}
+
+/* Score distribution */
+
+.trustscore-distribution iframe {
+	width: 100%;
+	height: 150px;
+	border: none;
+	background: transparent;
 }
 
 /* Review summary */
@@ -408,13 +574,13 @@ section.social .post .publish-date {
 section.social .post .name a,
 section.social .post .name a:link,
 section.social .post .name a:visited{
-	font-weight: 500;
 	color: #333;
+	font-weight: 500;
 }
 
 section.social .post .source{
-	font-size: .9em;
 	color: #333;
+	font-size: .9em;
 }
 
 section.social .post .content{

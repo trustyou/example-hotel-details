@@ -35,6 +35,37 @@
 		throw "API request failed!";
 	});
 
+
+    /*
+    Call the social api
+    */
+    var socialUrl = "http://api.trustyou.com/hotels/" + hotelData.tyId + "/social.json?" + $.param({
+        page_size: 2, // we ask for the most recent two posts
+        lang_list: ["en"]
+    });
+    var socialRequest = $.ajax({
+    	url: socialUrl,
+    	dataType: "jsonp"
+    }).fail(function() {
+    	throw "Social API request failed!";
+    });
+
+	/**
+	* Render the hotel title, address & rating.
+	*/
+	function renderHotelTitle(hotelData, reviewSummary) {
+		var hotelTitlteTemplate = $("#tmpl-hotel-title").html();
+		var templateData = {
+			name: hotelData.name,
+			address: hotelData.address,
+			reviewsCount: reviewSummary["reviews_count"],
+			trustScore: reviewSummary["summary"].score,
+		};
+
+		var hotelTitleRendered = Mustache.render(hotelTitlteTemplate, templateData);
+		$("#hotel-title").append(hotelTitleRendered);
+	}
+
 	/**
 	* Render the basic hotel info.
 	*/
@@ -86,7 +117,7 @@
 			return catB["count"] - catA["count"];
 		});
 		/*
-		Remove the overall sentimet category with ID "16" - these
+		Remove the overall sentiment category with ID "16" - these
 		opinions are a bit too generic for this visualization.
 		*/
 		categories = categories.filter(function(category) {
@@ -106,7 +137,7 @@
 				highlights are present, the "short_text" is
 				shown instead, which is guaranteed to be there
 				for all category-language combinations.
-				*/
+					*/
 				highlights: category["highlight_list"].concat({text: category["short_text"]}).slice(0, 3),
 				/*
 				Transform sub categories into the format
@@ -150,6 +181,76 @@
 
 	}
 
+	function renderLocationTab(hotelData) {
+		var iframeUrl = "http://api.trustyou.com/hotels/" + hotelData.tyId  + "/location.html";
+		$("#iframe-location").attr("src", iframeUrl);
+	}
+
+	/**
+	 * Render the social tab.
+	 */
+	 function renderSocialTab(socialData) {
+	 	var socialTabTemplate = $("#tmpl-social-tab").html();
+
+        /**
+         * Map the source url to css class
+         */
+         var getSourceIconClass = function(sourceID) {
+         	if (sourceID === "google.com") { return "google-plus"; }
+         	else {
+         		var urlElems = sourceID.split(".");
+         		return urlElems[urlElems.length-2];
+         	}
+         };
+
+        /**
+         * Format post date to month/date/year
+         */
+         var fromDateString = function(dateString) {
+         	var parts = dateString.split("-");
+         	var d = new Date(parts[0], parts[1]-1, parts[2]);
+         	return [d.getMonth() + 1, d.getDate(), d.getFullYear()].join("/");
+         };
+
+         var templateData = {
+
+            /**
+             * For each social source, create a new section.
+             */
+             sources: socialData["source_list"].map(function(sourceData) {
+             	var sourceIconClass = getSourceIconClass(sourceData.source_id);
+             	return {
+             		socialSource: sourceIconClass,
+
+             		posts: sourceData["post_list"].filter(function(postData) {
+                        /**
+                         * We will only show google plus or foursquare posts here.
+                         */
+                         return (postData.source_id === "google.com" ||
+                         	postData.source_id === "foursquare.com");
+                     }).map(function(postData) {
+                        /**
+                         * Turn social posts into format for the template.
+                         */
+                         return {
+                         	socialSourceClass: sourceIconClass,
+                         	socialSource: postData.source_name,
+                         	publishDate: fromDateString(postData.created),
+                         	text: postData.text,
+                            // show a source-specific default user name if
+                            // author field is null
+                            userName: postData.author
+                            || ("A " + postData.source_name + " user")
+                        };
+                    })
+                 };
+             })
+};
+
+var socialRendered = Mustache.render(socialTabTemplate, templateData);
+$("#social").append(socialRendered);
+}
+
 	/**
 	Process a response from the TrustYou Review Summary API.
 	*/
@@ -159,13 +260,52 @@
 			throw "API request failed!";
 		}
 		var reviewSummary = data.response;
+		renderHotelTitle(hotelData, reviewSummary);
 		renderHotelInfo(hotelData, reviewSummary);
 		renderReviewsTab(reviewSummary);
+		renderLocationTab(hotelData);
+	}
+
+	function processSocialResponse(data) {
+		if (data.meta.code !== 200) {
+			throw "Social widget request failed!";
+		}
+		var socialData = data.response;
+		renderSocialTab(socialData);
 	}
 
 	// when the DOM is ready for rendering, process the API response
 	$(function() {
 		reviewSummaryRequest.done(processReviewSummaryResponse);
+		socialRequest.done(processSocialResponse);
+
+		// if location tab is active reload the iframe first to make sure map is displayed
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+			if ($('.tab-content .tab-pane.active').attr('id') == 'location'){
+				var iframe = $('#iframe-location')
+				iframe.attr("src", iframe.attr("src"));
+			}
+
+		});
+
+		// when a review language is selected within the reviews tab
+		
+		$(document).on('shown.bs.tab', '.traveler-language a[data-toggle="tab"]',function (e) {
+			
+			// remove active class from all dropdown languages
+			$(this).parents('li').siblings().removeClass('active');
+			
+			// activate newly selected language
+			$(this).parents('li').addClass('active');
+
+			// update text for dropdown toggle
+			$(this).parents('.dropdown').find('[data-toggle="dropdown"] .language-type').html($(this).find('.language-type').text());
+			$(this).parents('.dropdown').find('[data-toggle="dropdown"] .value').html($(this).find('.value').text());
+		
+		});
 	});
 
 }($, Mustache));
+
+$(document).ready(function(){
+});
