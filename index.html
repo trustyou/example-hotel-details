@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,500,700"/>
   <link rel="stylesheet" href="http://cdn.trustyou.com/common/trustyou-iconic/css/trustyou-iconic.css"/>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/trustyou-ui.css"/>
   <link rel="stylesheet" href="css/trustscore.css"/>
   <link rel="stylesheet" href="css/style.css"/>
 
@@ -65,57 +66,92 @@
   <!-- HTML template for review summary -->
   <script id="tmpl-reviews-tab" type="x-tmpl-mustache">
     <div class="row">
-      <div class="col-xs-8"> 
-        <section class="traveler-type-distribution">
-          <h2>Travelers types</h2>
-          <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/traveler_distribution.html" />
-        </section>
-        <section class="highlights">
-          <h2>Highlights</h2>
-          <ul class="nav nav-pills nav-stacked">
-            {{#categories}}
-            <li class="{{class}}"><a href="#review-summary-{{categoryId}}" data-toggle="pill">{{categoryName}}</a></li>
-            {{/categories}}
-          </ul>
+      <div class="col-xs-9"> 
+        <div class="tab-content">
+	  {{#languageMetaReviews}}
+          <div class="tab-pane fade {{visibility}}" id="reviews-{{language}}">
+	    {{#travelerTypes}}
+            <section class="traveler-type-distribution">
+              <h2>Travelers types</h2>
+              <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/traveler_distribution.html" />
+            </section>
+	    {{/travelerTypes}}
+            <section class="highlights">
+              <h2>Highlights</h2>
+              <ul class="nav nav-pills nav-stacked">
+                {{#categories}}
+                <li class="{{class}}"><a href="#review-summary-{{language}}-{{categoryId}}" data-toggle="pill">{{categoryName}}</a></li>
+                {{/categories}}
+              </ul>
 
-          <div class="pill-content">
-            {{#categories}}
-            <div class="pill-pane fade {{class}}" id="review-summary-{{categoryId}}">
-              <div class="sentiment {{sentiment}}">
-                <i class="ty-icon ty-icon-users"></i>
-                <p class="snippets">
-                  {{#highlights}}
-                  <span>&ldquo;{{text}}&rdquo;</span>
-                  {{/highlights}}
-                </p>
-              </div>
-              {{#subCategories}}
-              <div class="subcategory">
-                <div class="result-chart {{sentiment}}">
-                  <div class="result-value" style="width: {{score}}%;"></div>
+              <div class="pill-content">
+                {{#categories}}
+                <div class="pill-pane fade {{class}}" id="review-summary-{{language}}-{{categoryId}}">
+                  <div class="sentiment {{sentiment}}">
+                    <i class="ty-icon ty-icon-users"></i>
+                    <p class="snippets">
+                      {{#highlights}}
+                      <span>&ldquo;{{text}}&rdquo;</span>
+                      {{/highlights}}
+                    </p>
+                  </div>
+                  {{#subCategories}}
+                  <div class="subcategory">
+                    <div class="result-chart {{sentiment}}">
+                      <div class="result-value" style="width: {{score}}%;"></div>
+                    </div>
+                    <div class="result-description">
+                      <p>{{text}}</p>
+                    </div>
+                  </div>
+                  {{/subCategories}}
                 </div>
-                <div class="result-description">
-                  <p>{{text}}</p>
-                </div>
+                {{/categories}}
               </div>
-              {{/subCategories}}
-            </div>
-            {{/categories}}
+            </section>        
           </div>
-        </section>
+	  {{/languageMetaReviews}}
+        </div>
       </div>
 
-      <div class="col-xs-4">
-        <section class="good-to-know">
-          <h2>Good to know</h2>
-          <ul>
-            {{#goodToKnow}}
+      <div class="col-xs-3">
+	<p style="clear: both">
+	  Summary of reviews written in &hellip;
+	</p>
+        <div class="dropdown traveler-language">
+          <a data-toggle="dropdown">
+            <i class="ty-icon ty-icon-language"></i>
+            <span class="language-type">All languages</span>
+            <span class="value">100%</span><i class="ty-icon ty-icon-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+	    {{#languageMetaReviews}}
             <li>
-              <i class="ty-icon ty-icon-{{sentiment}}"></i>{{text}}
+            <a data-toggle="tab" data-target="#reviews-{{language}}, #gtk-{{language}}">
+                <span class="language-type">{{label}}</span>
+                <span class="value">{{reviewsPercent}}%</span>
+              </a>
             </li>
-            {{/goodToKnow}}
+	    {{/languageMetaReviews}}
           </ul>
-        </section>
+        </div>
+
+        <div class="tab-content">
+	  {{#languageMetaReviews}}
+          <div class="tab-pane fade {{visibility}}" id="gtk-{{language}}">
+            <section class="good-to-know">
+              <h2>Good to know</h2>
+              <ul>
+                {{#goodToKnow}}
+                <li>
+                  <i class="ty-icon ty-icon-{{sentiment}}"></i>{{text}}
+                </li>
+                {{/goodToKnow}}
+              </ul>
+            </section>
+          </div>
+	  {{/languageMetaReviews}}
+        </div>
       </div>
     </div>
 

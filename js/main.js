@@ -8,6 +8,28 @@
 		imgUrl: "img/674fa44c-1fbd-4275-aa72-a20f262372cd.jpg"
 	};
 
+	var languageNames = {
+		en: "English",
+		de: "German",
+		fr: "French",
+		es: "Spanish",
+		it: "Italian",
+		pt: "Portuguese",
+		nl: "Dutsch",
+		ru: "Russian",
+		pl: "Polish",
+		zh: "Chinese",
+		ja: "Japanese",
+		th: "Thai",
+		id: "Indonesian",
+		ko: "Korean",
+		ar: "Arabic",
+		sv: "Swedish",
+		no: "Norwegian",
+		fi: "Finnish",
+		he: "Hebrew"
+	};
+
 	/*
 	When querying a JSON widget, always ask for the specific version you
 	developed against. This guarantees that no schema-breaking changes will
@@ -20,7 +42,7 @@
 		receive your own.
 		*/
 		key: "a06294d3-4d58-45c8-97a1-5c905922e03a",
-		v: "5.16",
+		v: "5.19",
 		/*
 		Pass detail=all to receive all categories and sub categories
 		present in this hotel's data.
@@ -35,20 +57,19 @@
 		throw "API request failed!";
 	});
 
-
-    /*
-    Call the social api
-    */
-    var socialUrl = "http://api.trustyou.com/hotels/" + hotelData.tyId + "/social.json?" + $.param({
-        page_size: 2, // we ask for the most recent two posts
-        lang_list: ["en"]
-    });
-    var socialRequest = $.ajax({
-    	url: socialUrl,
-    	dataType: "jsonp"
-    }).fail(function() {
-    	throw "Social API request failed!";
-    });
+	/*
+	Call the social api
+	*/
+	var socialUrl = "http://api.trustyou.com/hotels/" + hotelData.tyId + "/social.json?" + $.param({
+		page_size: 2, // we ask for the most recent two posts
+		lang_list: ["en"]
+	});
+	var socialRequest = $.ajax({
+		url: socialUrl,
+		dataType: "jsonp"
+	}).fail(function() {
+		throw "Social API request failed!";
+	});
 
 	/**
 	* Render the hotel title, address & rating.
@@ -102,11 +123,37 @@
 	}
 
 	/**
-	* Render the review summary.
+	* Prepare data from meta-review API to be displayed in the Mustache
+	template. This method is called repeatedly, once for the overall meta-
+	review, and once for each language-specific meta-review.
 	*/
-	function renderReviewsTab(reviewSummary) {
-		var reviewsTabTemplate = $("#tmpl-reviews-tab").html();
+	function prepareTemplateData(reviewSummary) {
 		var templateData = {};
+
+		if (reviewSummary.hasOwnProperty("filter")) {
+			/*
+			This is a language-specific meta-review, i.e. only from
+			reviews written in a certain language.
+			*/
+			templateData = {
+				language: reviewSummary["filter"]["language"],
+				label: languageNames[reviewSummary["filter"]["language"]],
+				reviewsPercent: reviewSummary["reviews_percent"],
+				travelerTypes: null,
+				visibility: ""
+			};
+		} else {
+			/*
+			This is the overall meta-review, visible by default.
+			*/
+			templateData = {
+				language: "all",
+				label: "All languages",
+				reviewsPercent: 100,
+				travelerTypes: true,
+				visibility: "in active"
+			};
+		}
 
 		/*
 		For this visualization, we will visualize the top 5 most
@@ -155,7 +202,7 @@
 						<neu>..</neu> with a regular
 						expression.
 						*/
-						text: subCategory["text"].replace(/<\/?(?:pos|neu|neg)>/g, ''),
+						text: subCategory["text"].replace(/<\/?(?:pos|neu|neg|strong)>/g, ''),
 						score: subCategory["score"]
 					};
 				})
@@ -176,6 +223,31 @@
 			};
 		});
 
+		return templateData;
+	}
+
+	/**
+	* Render the review summary.
+	*/
+	function renderReviewsTab(reviewSummary) {
+		var reviewsTabTemplate = $("#tmpl-reviews-tab").html();
+
+		// Transform the overall meta-review to the format expected
+		// by the template ...
+		var metaReviews = [prepareTemplateData(reviewSummary)]
+		// ... append all language meta-reviews ...
+		.concat(
+			reviewSummary["language_meta_review_list"].map(prepareTemplateData)
+		)
+		// ... sort them by descending reviews count, and ...
+		.sort(function(templateDataA, templateDataB) {
+			return templateDataB.reviewsPercent - templateDataA.reviewsPercent;
+		});
+		// ... display them!
+
+		var templateData = {
+			languageMetaReviews: metaReviews
+		};
 		var reviewsTabRendered = Mustache.render(reviewsTabTemplate, templateData);
 		$("#review-summary").append(reviewsTabRendered);
 
@@ -286,6 +358,22 @@ $("#social").append(socialRendered);
 				iframe.attr("src", iframe.attr("src"));
 			}
 
+		});
+
+		// when a review language is selected within the reviews tab
+		
+		$(document).on('shown.bs.tab', '.traveler-language a[data-toggle="tab"]',function (e) {
+			
+			// remove active class from all dropdown languages
+			$(this).parents('li').siblings().removeClass('active');
+			
+			// activate newly selected language
+			$(this).parents('li').addClass('active');
+
+			// update text for dropdown toggle
+			$(this).parents('.dropdown').find('[data-toggle="dropdown"] .language-type').html($(this).find('.language-type').text());
+			$(this).parents('.dropdown').find('[data-toggle="dropdown"] .value').html($(this).find('.value').text());
+		
 		});
 	});
 
