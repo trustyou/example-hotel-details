@@ -42,12 +42,7 @@
 		receive your own.
 		*/
 		key: "a06294d3-4d58-45c8-97a1-5c905922e03a",
-		v: "5.19",
-		/*
-		Pass detail=all to receive all categories and sub categories
-		present in this hotel's data.
-		*/
-		detail: "all"
+		v: "5.23"
 	});
 	var reviewSummaryRequest = $.ajax({
 		url: url,
