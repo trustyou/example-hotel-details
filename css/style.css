@@ -451,31 +451,6 @@ section.highlights .sentiment p.snippets span {
 	margin-right: 10px;
 }
 
-section.highlights .subcategory .result-chart {
-	float: left;
-	margin-top: 4px;
-	margin-right: 18px;
-	width: 100px;
-	height: 15px;
-	background: #f0f0f0;
-}
-
-section.highlights .subcategory .result-chart .result-value {
-	height: 100%;
-}
-
-section.highlights .subcategory .result-chart.neg .result-value {
-	background: #ee8e8e;
-}
-
-section.highlights .subcategory .result-chart.neu .result-value {
-	background: #f8d867;
-}
-
-section.highlights .subcategory .result-chart.pos .result-value {
-	background: #9acf89;
-}
-
 section.highlights .subcategory p {
 	font-weight: 300;
 }
@@ -497,6 +472,7 @@ section.good-to-know  ul li {
 	margin-bottom: 10px;
 }
 
+div.subcategory .ty-icon,
 section.good-to-know ul .ty-icon {
 	float: left;
 	margin-right: 10px;

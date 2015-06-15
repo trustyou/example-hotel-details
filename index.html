@@ -95,16 +95,14 @@
                       {{/highlights}}
                     </p>
                   </div>
-                  {{#subCategories}}
+                  {{#summarySentences}}
                   <div class="subcategory">
-                    <div class="result-chart {{sentiment}}">
-                      <div class="result-value" style="width: {{score}}%;"></div>
-                    </div>
                     <div class="result-description">
+		      <i class="ty-icon ty-icon-{{sentiment}}"></i>
                       <p>{{text}}</p>
                     </div>
                   </div>
-                  {{/subCategories}}
+                  {{/summarySentences}}
                 </div>
                 {{/categories}}
               </div>

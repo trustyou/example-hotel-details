@@ -35,14 +35,14 @@
 	developed against. This guarantees that no schema-breaking changes will
 	affect your code.
 	*/
-	var url = "http://api.trustyou.com/hotels/" + hotelData.tyId + "/tops_flops.json?" + $.param({
+	var url = "http://api.trustyou.com/hotels/" + hotelData.tyId + "/meta_review.json?" + $.param({
 		lang: "en",
 		/*
 		This is a demo API key, do not reuse it! Contact TrustYou to
 		receive your own.
 		*/
 		key: "a06294d3-4d58-45c8-97a1-5c905922e03a",
-		v: "5.23"
+		v: "5.25"
 	});
 	var reviewSummaryRequest = $.ajax({
 		url: url,
@@ -179,26 +179,15 @@
 				highlights are present, the "short_text" is
 				shown instead, which is guaranteed to be there
 				for all category-language combinations.
-					*/
+				*/
 				highlights: category["highlight_list"].concat({text: category["short_text"]}).slice(0, 3),
 				/*
-				Transform sub categories into the format
-				expected by the template. Order by sentiment
-				from positive to negative this time.
+				Show category summary sentences.
 				*/
-				subCategories: category["sub_category_list"].sort(function(catA, catB) {
-					return catB["score"] - catA["score"];
-				}).map(function(subCategory) {
+				summarySentences: category["summary_sentence_list"].map(function(summarySentence) {
 					return {
-						sentiment: subCategory["sentiment"],
-						/*
-						Remove the markers in the form of
-						<pos>..</pos>, <neg>..</neg> and
-						<neu>..</neu> with a regular
-						expression.
-						*/
-						text: subCategory["text"].replace(/<\/?(?:pos|neu|neg|strong)>/g, ''),
-						score: subCategory["score"]
+						sentiment: (summarySentence["sentiment"] == "neg" ? "remove" : "ok"),
+						text: summarySentence["text"]
 					};
 				})
 			};
