@@ -47,7 +47,20 @@
         {{/hotelTypes}}
       </div>
       <div class="trustscore-distribution">
-        <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/trust_score_distribution.html" />
+        <iframe src="http://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/seal.html" />
+
+	<div class="distribution">
+	  {{#reviewsDistribution}}
+          <div class="rating-level {{sentiment}}">
+            <div class="rating-value"><i class="ty-icon ty-icon-star"></i> {{stars}}</div>
+            <div class="rating-chart">
+	      <div class="rating-chart-value" style="width: {{percent}}%;"></div>
+            </div>
+            <div class="rating-count">{{reviewsCount}}</div>
+          </div>
+	  {{/reviewsDistribution}}
+        </div>
+	
       </div>
     </div>
     <div class="col-xs-4">

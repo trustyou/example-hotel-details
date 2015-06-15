@@ -350,10 +350,14 @@ header .nav-tabs>li .ty-icon {
 /* Score distribution */
 
 .trustscore-distribution iframe {
-	width: 100%;
+	width: 200px;
 	height: 150px;
 	border: none;
 	background: transparent;
+}
+
+.trustscore-distribution .distribution {
+	float: right;
 }
 
 /* Review summary */

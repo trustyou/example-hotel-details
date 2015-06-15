@@ -113,6 +113,21 @@
 			};
 		});
 
+		// transform hotel star distribution
+		templateData.reviewsDistribution = reviewSummary["summary"]["reviews_distribution"]
+		.reverse()
+		.map(function(starBin) {
+			return {
+				reviewsCount: starBin["reviews_count"],
+				stars: starBin["stars"],
+				// we will color 4 & 5 green, 3 yellow, and 1 & 2 red
+				sentiment: starBin["stars"] >= 4 ? "pos" : (starBin["stars"] <= 2 ? "neg" : "neu"),
+				// divide the reviews count for this bin by the
+				// total count to obtain a relative percentage
+				percent: 100 * starBin["reviews_count"] / reviewSummary["reviews_count"]
+			};
+		});
+
 		var hotelInfoRendered = Mustache.render(hotelInfoTemplate, templateData);
 		$("#hotel-info").append(hotelInfoRendered);
 	}
