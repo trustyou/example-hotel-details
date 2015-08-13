@@ -35,12 +35,7 @@
 	developed against. This guarantees that no schema-breaking changes will
 	affect your code.
 	*/
-	/*
-	Note: This example is temporarily pointing at our staging platform to
-	showcase some new features. Contact TrustYou to learn more about what's
-	new in Meta-Review API v5.25.
-	*/
-	var url = "http://api.staging.trustyou.com/hotels/" + hotelData.tyId + "/meta_review.json?" + $.param({
+	var url = "http://api.trustyou.com/hotels/" + hotelData.tyId + "/meta_review.json?" + $.param({
 		lang: "en",
 		/*
 		This is a demo API key, do not reuse it! Contact TrustYou to
