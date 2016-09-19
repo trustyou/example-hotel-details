@@ -35,7 +35,7 @@
 	developed against. This guarantees that no schema-breaking changes will
 	affect your code.
 	*/
-	var url = "http://api.trustyou.com/hotels/" + hotelData.tyId + "/meta_review.json?" + $.param({
+	var url = "//api.trustyou.com/hotels/" + hotelData.tyId + "/meta_review.json?" + $.param({
 		lang: "en",
 		/*
 		This is a demo API key, do not reuse it! Contact TrustYou to
@@ -55,7 +55,7 @@
 	/*
 	Call the social api
 	*/
-	var socialUrl = "http://api.trustyou.com/hotels/" + hotelData.tyId + "/social.json?" + $.param({
+	var socialUrl = "//api.trustyou.com/hotels/" + hotelData.tyId + "/social.json?" + $.param({
 		page_size: 2, // we ask for the most recent two posts
 		lang_list: ["en"]
 	});
@@ -253,7 +253,7 @@
 	}
 
 	function renderLocationTab(hotelData) {
-		var iframeUrl = "http://api.trustyou.com/hotels/" + hotelData.tyId  + "/location.html";
+		var iframeUrl = "//api.trustyou.com/hotels/" + hotelData.tyId  + "/location.html";
 		$("#iframe-location").attr("src", iframeUrl);
 	}
 
