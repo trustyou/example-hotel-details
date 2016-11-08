@@ -56,7 +56,7 @@
 	Call the social api
 	*/
 	var socialUrl = "//api.trustyou.com/hotels/" + hotelData.tyId + "/social.json?" + $.param({
-		page_size: 2, // we ask for the most recent two posts
+		page_size: 5, // we ask for the most recent five posts
 		lang_list: ["en"]
 	});
 	var socialRequest = $.ajax({
