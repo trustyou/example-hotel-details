@@ -42,7 +42,7 @@
 		receive your own.
 		*/
 		key: "a06294d3-4d58-45c8-97a1-5c905922e03a",
-		v: "5.25"
+		v: "5.39"
 	});
 	var reviewSummaryRequest = $.ajax({
 		url: url,
@@ -286,36 +286,23 @@
          var templateData = {
 
             /**
-             * For each social source, create a new section.
+             * Show each social post.
              */
-             sources: socialData["source_list"].map(function(sourceData) {
-             	var sourceIconClass = getSourceIconClass(sourceData.source_id);
-             	return {
-             		socialSource: sourceIconClass,
-
-             		posts: sourceData["post_list"].filter(function(postData) {
-                        /**
-                         * We will only show google plus or foursquare posts here.
-                         */
-                         return (postData.source_id === "google.com" ||
-                         	postData.source_id === "foursquare.com");
-                     }).map(function(postData) {
-                        /**
-                         * Turn social posts into format for the template.
-                         */
-                         return {
-                         	socialSourceClass: sourceIconClass,
-                         	socialSource: postData.source_name,
-                         	publishDate: fromDateString(postData.created),
-                         	text: postData.text,
-                            // show a source-specific default user name if
-                            // author field is null
-                            userName: postData.author
-                            || ("A " + postData.source_name + " user")
-                        };
-                    })
-                 };
-             })
+			posts: socialData["post_list"].filter(function(postData){return postData.text !== ""}).map(function(postData) {
+				/**
+				 * Turn social posts into format for the template.
+				 */
+				 return {
+					socialSourceClass: getSourceIconClass(postData.source_id),
+					socialSource: postData.source_name,
+					publishDate: fromDateString(postData.created),
+					text: postData.text,
+					// show a source-specific default user name if
+					// author field is null
+					userName: postData.author
+					|| ("A " + postData.source_name + " user")
+				};
+			})
 };
 
 var socialRendered = Mustache.render(socialTabTemplate, templateData);
