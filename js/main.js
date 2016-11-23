@@ -52,20 +52,6 @@
 		throw "API request failed!";
 	});
 
-	/*
-	Call the social api
-	*/
-	var socialUrl = "https://api.trustyou.com/hotels/" + hotelData.tyId + "/social.json?" + $.param({
-		page_size: 5, // we ask for the most recent five posts
-		lang_list: ["en"]
-	});
-	var socialRequest = $.ajax({
-		url: socialUrl,
-		dataType: "jsonp"
-	}).fail(function() {
-		throw "Social API request failed!";
-	});
-
 	/**
 	* Render the hotel title, address & rating.
 	*/
@@ -248,54 +234,10 @@
 	/**
 	 * Render the social tab.
 	 */
-	 function renderSocialTab(socialData) {
-	 	var socialTabTemplate = $("#tmpl-social-tab").html();
-
-        /**
-         * Map the source url to css class
-         */
-         var getSourceIconClass = function(sourceID) {
-         	if (sourceID === "google.com") { return "google-plus"; }
-         	else {
-         		var urlElems = sourceID.split(".");
-         		return urlElems[urlElems.length-2];
-         	}
-         };
-
-        /**
-         * Format post date to month/date/year
-         */
-         var fromDateString = function(dateString) {
-         	var parts = dateString.split("-");
-         	var d = new Date(parts[0], parts[1]-1, parts[2]);
-         	return [d.getMonth() + 1, d.getDate(), d.getFullYear()].join("/");
-         };
-
-         var templateData = {
-
-            /**
-             * Show each social post.
-             */
-			posts: socialData["post_list"].filter(function(postData){return postData.text !== ""}).map(function(postData) {
-				/**
-				 * Turn social posts into format for the template.
-				 */
-				 return {
-					socialSourceClass: getSourceIconClass(postData.source_id),
-					socialSource: postData.source_name,
-					publishDate: fromDateString(postData.created),
-					text: postData.text,
-					// show a source-specific default user name if
-					// author field is null
-					userName: postData.author
-					|| ("A " + postData.source_name + " user")
-				};
-			})
-};
-
-var socialRendered = Mustache.render(socialTabTemplate, templateData);
-$("#social").append(socialRendered);
-}
+	 function renderSocialTab(hotelData) {
+		var iframeUrl = "https://api.trustyou.com/hotels/" + hotelData.tyId  + "/social.html";
+		$("#iframe-social").attr("src", iframeUrl);
+	}
 
 	/**
 	Process a response from the TrustYou Review Summary API.
@@ -310,20 +252,12 @@ $("#social").append(socialRendered);
 		renderHotelInfo(hotelData, reviewSummary);
 		renderReviewsTab(reviewSummary);
 		renderLocationTab(hotelData);
-	}
-
-	function processSocialResponse(data) {
-		if (data.meta.code !== 200) {
-			throw "Social widget request failed!";
-		}
-		var socialData = data.response;
-		renderSocialTab(socialData);
+		renderSocialTab(hotelData);
 	}
 
 	// when the DOM is ready for rendering, process the API response
 	$(function() {
 		reviewSummaryRequest.done(processReviewSummaryResponse);
-		socialRequest.done(processSocialResponse);
 
 		// if location tab is active reload the iframe first to make sure map is displayed
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -352,6 +286,3 @@ $("#social").append(socialRendered);
 	});
 
 }($, Mustache));
-
-$(document).ready(function(){
-});
