@@ -100,14 +100,6 @@
               <div class="pill-content">
                 {{#categories}}
                 <div class="pill-pane fade {{class}}" id="review-summary-{{language}}-{{categoryId}}">
-                  <div class="sentiment {{sentiment}}">
-                    <i class="ty-icon ty-icon-users"></i>
-                    <p class="snippets">
-                      {{#highlights}}
-                      <span>&ldquo;{{text}}&rdquo;</span>
-                      {{/highlights}}
-                    </p>
-                  </div>
                   {{#summarySentences}}
                   <div class="subcategory">
                     <div class="result-description">

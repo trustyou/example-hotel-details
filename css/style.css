@@ -424,37 +424,6 @@ section.highlights .sentiment .ty-icon {
 	font-size: 1.8em;
 }
 
-section.highlights .sentiment p.snippets {
-	position: relative;
-	margin-left: 40px;
-	padding: 10px 15px;
-	background: #f5f5f5;
-	color: #999;
-	font-weight: normal;
-	font-style: italic;
-	font-size: .9em;
-}
-
-section.highlights .sentiment.neg p.snippets {
-	background: #fff2f2;
-	color: #d96866;
-}
-
-section.highlights .sentiment.neu p.snippets {
-	background: #fff8e3;
-	color: #f9c015;
-}
-
-section.highlights .sentiment.pos p.snippets {
-	background: #f0ffed;
-	color: #81bf52;
-}
-
-section.highlights .sentiment p.snippets span {
-	display: inline-block;
-	margin-right: 10px;
-}
-
 section.highlights .subcategory p {
 	font-weight: 300;
 }

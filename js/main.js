@@ -185,13 +185,6 @@
 				categoryName: category["category_name"],
 				sentiment: category["sentiment"],
 				/*
-				Show up to three returned highlights. If no
-				highlights are present, the "short_text" is
-				shown instead, which is guaranteed to be there
-				for all category-language combinations.
-				*/
-				highlights: category["highlight_list"].concat({text: category["short_text"]}).slice(0, 3),
-				/*
 				Show category summary sentences.
 				*/
 				summarySentences: category["summary_sentence_list"].map(function(summarySentence) {
