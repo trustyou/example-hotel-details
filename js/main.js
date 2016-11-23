@@ -101,15 +101,7 @@
 		templateData.hotelTypes = reviewSummary["hotel_type_list"].map(function(hotelType) {
 			return {
 				categoryId: hotelType["category_id"],
-				/*
-				Texts in the "text" property contain markers
-				in the form of <pos>..</pos>, <neg>..</neg> and
-				<neu>..</neu>, which enclose passages in the
-				text that contain sentiment. Either remove
-				these before displaying the text, or replace
-				them with meaningful markup, as is done here.
-				*/
-				text: hotelType["text"].replace("<pos>", "<strong>").replace("</pos>", "</strong>")
+				text: hotelType["text"]
 			};
 		});
 
