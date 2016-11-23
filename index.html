@@ -39,12 +39,12 @@
         {{summary}}
       </h3>
       <div class="hotel-type">
-        {{#hotelTypes}}
+        {{#badges}}
         <p>
           <i class="ty-icon ty-icon-{{categoryId}}"></i>
-          {{&text}}
+          {{&text}} &ndash; <em>{{&subtext}}</em>
         </p>
-        {{/hotelTypes}}
+        {{/badges}}
       </div>
       <div class="trustscore-distribution">
         <iframe src="https://api.trustyou.com/hotels/674fa44c-1fbd-4275-aa72-a20f262372cd/seal.html" />

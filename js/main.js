@@ -98,10 +98,13 @@
 		};
 
 		// transform hotel types to the format expected by the template
-		templateData.hotelTypes = reviewSummary["hotel_type_list"].map(function(hotelType) {
+		templateData.badges = reviewSummary["badge_list"]
+		.slice(1, 3)
+		.map(function(badge) {
 			return {
-				categoryId: hotelType["category_id"],
-				text: hotelType["text"]
+				categoryId: badge["badge_data"]["category_id"],
+				text: badge["text"],
+				subtext: badge["subtext"]
 			};
 		});
 
