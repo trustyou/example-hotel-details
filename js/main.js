@@ -260,6 +260,7 @@
 		reviewSummaryRequest.done(processReviewSummaryResponse);
 
 		// if location tab is active reload the iframe first to make sure map is displayed
+		/*
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 			if ($('.tab-content .tab-pane.active').attr('id') == 'location'){
 				var iframe = $('#iframe-location')
@@ -267,6 +268,7 @@
 			}
 
 		});
+		*/
 
 		// when a review language is selected within the reviews tab
 		
