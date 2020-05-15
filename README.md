@@ -11,7 +11,6 @@ As a demo we also integrated a tab navigation to group more information such as:
 - score distribution
 - review summary
 - location reviews
-- social reviews
 
 
 Live example

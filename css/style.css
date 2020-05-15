@@ -123,11 +123,11 @@ header .ranking {
 	background: #119a11;
 	color: #fff;
 	font-size: .9em;
-}	
+}
 
 header .rank-wrapper {
 	display:table-cell;
-	height: 50px; 
+	height: 50px;
 	vertical-align:middle;
 }
 
@@ -319,16 +319,16 @@ header .nav-tabs {
 	border-bottom-color: #e5e5e5;
 }
 
-header .nav-tabs>li>a, 
-header .nav-tabs>li>a:hover, 
+header .nav-tabs>li>a,
+header .nav-tabs>li>a:hover,
 header .nav-tabs>li>a:focus {
 	padding: 15px 25px;
 	font-weight: normal;
 	font-size: 1.1em;
 }
 
-header .nav-tabs>li.active>a, 
-header .nav-tabs>li.active>a:hover, 
+header .nav-tabs>li.active>a,
+header .nav-tabs>li.active>a:hover,
 header .nav-tabs>li.active>a:focus {
 	border-color: #e5e5e5;
 	border-bottom-color: transparent;
@@ -336,7 +336,7 @@ header .nav-tabs>li.active>a:focus {
 	color: #428bca;
 }
 
-header .nav-tabs>li>a, .nav-tabs>li>a:hover, 
+header .nav-tabs>li>a, .nav-tabs>li>a:hover,
 header .nav-tabs>li>a:focus {
 	color: #777;
 }
@@ -374,8 +374,8 @@ section.highlights .nav-pills>li>a {
 	color: #666;
 }
 
-section.highlights .nav-pills>li.active>a, 
-section.highlights .nav-pills>li.active>a:hover, 
+section.highlights .nav-pills>li.active>a,
+section.highlights .nav-pills>li.active>a:hover,
 section.highlights .nav-pills>li.active>a:focus {
 	border: 1px solid #e5e5e5;
 	background: transparent;
@@ -456,85 +456,4 @@ section.good-to-know ul .ty-icon-ok {
 
 section.good-to-know ul .ty-icon-remove {
 	color: #ee8e8e;
-}
-
-/* Social */
-
-section.social .post {
-	position: relative;
-	margin-right: 10px;
-	margin-bottom: 30px;
-	padding: 15px;
-	border-left: 1px solid #999;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	background: #f9f9f9;
-}
-
-section.social .post p {
-	margin: 0;
-	line-height: normal;
-}
-
-section.social .post .social-badge{
-	position: absolute;
-	top: 0;
-	left: -25px;
-	width: 25px;
-	height: 25px;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
-	background: #999;
-	color: #fff;
-	text-align: center;
-}
-
-section.social.foursquare .post .social-badge {
-	background: #1983b6;
-}
-
-section.social.google-plus .post .social-badge {
-	background: #df4931;
-}
-
-section.social.foursquare .post {
-	border-left-color: #1983b6;
-}
-
-section.social.google-plus .post {
-	border-left-color: #df4931;
-}
-
-section.social .post .social-badge .ty-icon{
-	display: inline-block;
-	margin-top: 6px;
-}
-
-section.social .post .avatar {
-	float: left;
-	margin-right: 10px;
-	width: 50px;
-}
-
-section.social .post .publish-date {
-	float: right;
-}
-
-section.social .post .name a,
-section.social .post .name a:link,
-section.social .post .name a:visited{
-	color: #333;
-	font-weight: 500;
-}
-
-section.social .post .source{
-	color: #333;
-	font-size: .9em;
-}
-
-section.social .post .content{
-	clear: both;
-	padding-top: 5px;
-	font-size: .9em;
-	line-height: 1.6em;
 }
