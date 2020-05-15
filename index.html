@@ -166,41 +166,6 @@
 
   <!-- Location widget will be used as an iframe, so does not need a template -->
 
-  <!-- HTML template for social -->
-  <script id="tmpl-social-tab" type="x-tmpl-mustache">
-      <div class="col-xs-6">
-        <section class="social {{socialSource}}">
-
-          {{#posts}}
-          <div class="post">
-            <div class="social-badge">
-              <i class="ty-icon ty-icon-{{socialSourceClass}}"></i>
-            </div>
-            <p class="publish-date">
-              {{publishDate}}
-            </p>
-            <p class="name">
-              <a href="" target="_blank">{{userName}}</a>
-            </p>
-            <p class="source">
-              <a href="" target="_blank">
-                on {{socialSource}}
-              </a>
-            </p>
-            <p class="content">
-              {{text}}
-            </p>
-          </div>
-          {{/posts}}
-
-        </section>
-      </div>
-    </div>
-    <a href="http://trustyou.com" class="verified-reviews">
-      <img src="https://api.trustyou.com/static/img/verified-reviews.png" alt="powered by TrustYou" class="powered-by-trustyou"/>
-    </a>
-
-  </script>
 </head>
 
 <body>
@@ -223,12 +188,6 @@
             Location
           </a>
         </li>
-        <li>
-          <a href="#social" data-toggle="tab">
-            <i class="ty-icon ty-icon-users"></i>
-            Social
-          </a>
-        </li>
       </ul>
     </div>
   </header>
@@ -239,9 +198,6 @@
       <!-- Location iframe -->
       <div class="tab-pane fade" id="location">
         <iframe id="iframe-location" src="" frameborder="0" width="100%" height="2200px"></iframe>
-      </div>
-      <div class="tab-pane fade" id="social">
-        <iframe id="iframe-social" src="" frameborder="0" width="100%" height="1000px"></iframe>
       </div>
     </div>
   </div>

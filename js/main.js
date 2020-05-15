@@ -232,14 +232,6 @@
 	}
 
 	/**
-	 * Render the social tab.
-	 */
-	 function renderSocialTab(hotelData) {
-		var iframeUrl = "https://api.trustyou.com/hotels/" + hotelData.tyId  + "/social.html";
-		$("#iframe-social").attr("src", iframeUrl);
-	}
-
-	/**
 	Process a response from the TrustYou Review Summary API.
 	*/
 	function processReviewSummaryResponse(data) {
@@ -252,7 +244,6 @@
 		renderHotelInfo(hotelData, reviewSummary);
 		renderReviewsTab(reviewSummary);
 		renderLocationTab(hotelData);
-		renderSocialTab(hotelData);
 	}
 
 	// when the DOM is ready for rendering, process the API response
@@ -261,17 +252,17 @@
 
 		// when a review language is selected within the reviews tab
 		$(document).on('shown.bs.tab', '.traveler-language a[data-toggle="tab"]',function (e) {
-			
+
 			// remove active class from all dropdown languages
 			$(this).parents('li').siblings().removeClass('active');
-			
+
 			// activate newly selected language
 			$(this).parents('li').addClass('active');
 
 			// update text for dropdown toggle
 			$(this).parents('.dropdown').find('[data-toggle="dropdown"] .language-type').html($(this).find('.language-type').text());
 			$(this).parents('.dropdown').find('[data-toggle="dropdown"] .value').html($(this).find('.value').text());
-		
+
 		});
 	});
 
