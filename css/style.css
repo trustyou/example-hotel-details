@@ -123,11 +123,11 @@ header .ranking {
 	background: #119a11;
 	color: #fff;
 	font-size: .9em;
-}	
+}
 
 header .rank-wrapper {
 	display:table-cell;
-	height: 50px; 
+	height: 50px;
 	vertical-align:middle;
 }
 
@@ -319,16 +319,16 @@ header .nav-tabs {
 	border-bottom-color: #e5e5e5;
 }
 
-header .nav-tabs>li>a, 
-header .nav-tabs>li>a:hover, 
+header .nav-tabs>li>a,
+header .nav-tabs>li>a:hover,
 header .nav-tabs>li>a:focus {
 	padding: 15px 25px;
 	font-weight: normal;
 	font-size: 1.1em;
 }
 
-header .nav-tabs>li.active>a, 
-header .nav-tabs>li.active>a:hover, 
+header .nav-tabs>li.active>a,
+header .nav-tabs>li.active>a:hover,
 header .nav-tabs>li.active>a:focus {
 	border-color: #e5e5e5;
 	border-bottom-color: transparent;
@@ -336,7 +336,7 @@ header .nav-tabs>li.active>a:focus {
 	color: #428bca;
 }
 
-header .nav-tabs>li>a, .nav-tabs>li>a:hover, 
+header .nav-tabs>li>a, .nav-tabs>li>a:hover,
 header .nav-tabs>li>a:focus {
 	color: #777;
 }
@@ -374,8 +374,8 @@ section.highlights .nav-pills>li>a {
 	color: #666;
 }
 
-section.highlights .nav-pills>li.active>a, 
-section.highlights .nav-pills>li.active>a:hover, 
+section.highlights .nav-pills>li.active>a,
+section.highlights .nav-pills>li.active>a:hover,
 section.highlights .nav-pills>li.active>a:focus {
 	border: 1px solid #e5e5e5;
 	background: transparent;
@@ -450,7 +450,7 @@ section.good-to-know ul .ty-icon {
 	float: left;
 	margin-right: 10px;
 }
-section.good-to-know ul .ty-icon-ok {
+section.good-to-know ul .ty-icon-check {
 	color: #9acf89;
 }
 
