@@ -6,7 +6,7 @@
 
   <!-- These CSS files are for styling purposes only; they are not required to visualize the TrustYou API -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,500,700"/>
-  <link rel="stylesheet" href="https://cdn.trustyou.com/common/trustyou-iconic/css/trustyou-iconic.css"/>
+  <link rel="stylesheet" href="https://cdn.trustyou.com/apps/trustyou-iconic/public/css/trustyou-iconic.min.latest.css"/>
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/trustyou-ui.css"/>
   <link rel="stylesheet" href="css/trustscore.css"/>
@@ -27,7 +27,7 @@
       </span>
     </h1>
     <h2>
-      <i class="ty-icon ty-icon-marker"></i>
+      <i class="ty-icon ty-icon-building"></i>
       {{address}}
     </h2>
   </script>
@@ -60,7 +60,7 @@
           </div>
 	  {{/reviewsDistribution}}
         </div>
-	
+
       </div>
     </div>
     <div class="col-xs-4">
@@ -79,7 +79,7 @@
   <!-- HTML template for review summary -->
   <script id="tmpl-reviews-tab" type="x-tmpl-mustache">
     <div class="row">
-      <div class="col-xs-9"> 
+      <div class="col-xs-9">
         <div class="tab-content">
 	  {{#languageMetaReviews}}
           <div class="tab-pane fade {{visibility}}" id="reviews-{{language}}">
@@ -111,7 +111,7 @@
                 </div>
                 {{/categories}}
               </div>
-            </section>        
+            </section>
           </div>
 	  {{/languageMetaReviews}}
         </div>
@@ -213,13 +213,13 @@
       <ul class="nav nav-tabs">
         <li class="active">
           <a href="#review-summary" data-toggle="tab">
-            <i class="ty-icon ty-icon-chart-bars"></i>
+            <i class="ty-icon ty-icon-review"></i>
             Reviews
           </a>
         </li>
         <li>
           <a href="#location" data-toggle="tab">
-            <i class="ty-icon ty-icon-marker"></i>
+            <i class="ty-icon ty-icon-building"></i>
             Location
           </a>
         </li>

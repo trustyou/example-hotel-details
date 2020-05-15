@@ -175,7 +175,7 @@
 				*/
 				summarySentences: category["summary_sentence_list"].map(function(summarySentence) {
 					return {
-						sentiment: (summarySentence["sentiment"] == "neg" ? "remove" : "ok"),
+						sentiment: (summarySentence["sentiment"] == "neg" ? "remove" : "check"),
 						text: summarySentence["text"]
 					};
 				})
@@ -191,7 +191,7 @@
 				Show a positive icon for positive sentiment,
 				negative otherwise.
 				*/
-				sentiment: goodToKnow["sentiment"] === "pos" ? "ok" : "remove",
+				sentiment: goodToKnow["sentiment"] === "pos" ? "check" : "remove",
 				text: goodToKnow["short_text"]
 			};
 		});
