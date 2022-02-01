@@ -30,6 +30,8 @@
 		he: "Hebrew"
 	};
 
+	let apikey = "22222222-2222-2222-2222-222222222222"
+
 	/*
 	When querying a JSON widget, always ask for the specific version you
 	developed against. This guarantees that no schema-breaking changes will
@@ -41,7 +43,7 @@
 		This is a demo API key, do not reuse it! Contact TrustYou to
 		receive your own.
 		*/
-		key: "a06294d3-4d58-45c8-97a1-5c905922e03a",
+		key: apikey,
 		v: "5.39"
 	});
 	var reviewSummaryRequest = $.ajax({
