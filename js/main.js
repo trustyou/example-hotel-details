@@ -64,6 +64,7 @@
 			address: hotelData.address,
 			reviewsCount: reviewSummary["reviews_count"],
 			trustScore: reviewSummary["summary"].score,
+			apikey: apikey
 		};
 
 		var hotelTitleRendered = Mustache.render(hotelTitlteTemplate, templateData);
@@ -82,7 +83,8 @@
 			reviewsCount: reviewSummary["reviews_count"],
 			trustScore: reviewSummary["summary"].score,
 			popularity: reviewSummary["summary"].popularity,
-			summary: reviewSummary["summary"].text
+			summary: reviewSummary["summary"].text,
+			apikey: apikey
 		};
 
 		// transform hotel types to the format expected by the template
@@ -221,7 +223,8 @@
 		// ... display them!
 
 		var templateData = {
-			languageMetaReviews: metaReviews
+			languageMetaReviews: metaReviews,
+			apikey: apikey
 		};
 		var reviewsTabRendered = Mustache.render(reviewsTabTemplate, templateData);
 		$("#review-summary").append(reviewsTabRendered);
