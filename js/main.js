@@ -232,7 +232,7 @@
 	}
 
 	function renderLocationTab(hotelData) {
-		var iframeUrl = "https://api.trustyou.com/hotels/" + hotelData.tyId  + "/location.html";
+		var iframeUrl = "https://api.trustyou.com/hotels/" + hotelData.tyId  + "/location.html?key=" + apikey;
 		$("#iframe-location").attr("src", iframeUrl);
 	}
 
