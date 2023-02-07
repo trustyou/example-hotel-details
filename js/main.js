@@ -231,11 +231,6 @@
 
 	}
 
-	function renderLocationTab(hotelData) {
-		var iframeUrl = "https://api.trustyou.com/hotels/" + hotelData.tyId  + "/location.html?key=" + apikey;
-		$("#iframe-location").attr("src", iframeUrl);
-	}
-
 	/**
 	Process a response from the TrustYou Review Summary API.
 	*/
@@ -248,7 +243,6 @@
 		renderHotelTitle(hotelData, reviewSummary);
 		renderHotelInfo(hotelData, reviewSummary);
 		renderReviewsTab(reviewSummary);
-		renderLocationTab(hotelData);
 	}
 
 	// when the DOM is ready for rendering, process the API response
