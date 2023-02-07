@@ -16,6 +16,3 @@ Live example
 ------------
 
 You can try out the live demo of this example [here](http://trustyou.github.io/example-hotel-details/).
-
-
-![alt tag](img/preview.jpg)
